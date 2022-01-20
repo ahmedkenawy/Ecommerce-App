@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "47879928664",
+    "project_id": "elmarket-6dddc",
+    "storage_bucket": "elmarket-6dddc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47879928664:android:fe8fc580239c6a135c832d",
+        "android_client_info": {
+          "package_name": "com.a7medkenawy.elmarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47879928664-j2mcdjnn9lua6vqfd3dbcp9607vdntd0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.a7medkenawy.elmarket",
+            "certificate_hash": "f504c0e307b53e1e28e8d2cfbb3ea2bbe188a2d1"
+          }
+        },
+        {
+          "client_id": "47879928664-4o8b0pq9h1b707ejrfn8q0tpvn4k6l5g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALRfFlndRoSJFXRxyu1trEqMZS4_n_xfE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47879928664-4o8b0pq9h1b707ejrfn8q0tpvn4k6l5g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
