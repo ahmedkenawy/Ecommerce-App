@@ -11,6 +11,8 @@ import android.widget.Toast
 import android.widget.Toolbar
 import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityRegisterBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class RegisterActivity : BaseActivity() {
 
@@ -22,8 +24,9 @@ class RegisterActivity : BaseActivity() {
 
         setupActionBar()
 
-        binding.btnLogin.setOnClickListener {
-            validateRegisterDetails()
+        binding.RegisterBtnLogin.setOnClickListener {
+
+            registerNewUser()
 
         }
 
@@ -31,6 +34,26 @@ class RegisterActivity : BaseActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
 
+    }
+
+    private fun registerNewUser() {
+        if (validateRegisterDetails()) {
+
+            var email = binding.RegisterEdEmail.text.toString().trim()
+            var password = binding.RegisterEdPassword.text.toString().trim()
+
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        var firebaseUser = task.result.user
+
+                        showCustomToast()
+                    }
+
+                }.addOnFailureListener {
+                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                }
+        }
     }
 
     private fun setupActionBar() {
@@ -95,7 +118,6 @@ class RegisterActivity : BaseActivity() {
                 false
             }
             else -> {
-
 
                 true
             }

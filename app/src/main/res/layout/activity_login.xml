@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#EEEEEE"
+    android:orientation="vertical"
     tools:context=".activities.LoginActivity">
 
     <com.a7medkenawy.elmarket.Utils.CustomTextView
@@ -28,31 +28,29 @@
         app:lottie_rawRes="@raw/login" />
 
 
-
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="@dimen/_270sdp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/_8sdp"
-        app:cardMaxElevation="@dimen/_5sdp"
         app:cardElevation="@dimen/_20sdp"
-        app:cardBackgroundColor="@color/white">
+        app:cardMaxElevation="@dimen/_5sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/outlined_login_email"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:backgroundTint="@null"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:hint="Enter Your Email"
                 app:boxStrokeColor="@color/bradColor">
 
@@ -89,13 +87,23 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:background="@drawable/button_background"
                 android:gravity="center"
                 android:padding="@dimen/_12sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
                 android:text="Login"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15ssp" />
+
+            <TextView
+                android:id="@+id/Login_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="-10dp"
+                android:layout_marginEnd="@dimen/_17sdp"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:text="@string/forgotPassword" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -115,26 +123,27 @@
         android:layout_width="@dimen/_270sdp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="@dimen/_10sdp"
-        app:cardMaxElevation="@dimen/_5sdp"
         app:cardElevation="@dimen/_20sdp"
-        app:cardBackgroundColor="@color/white">
+        app:cardMaxElevation="@dimen/_5sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <com.a7medkenawy.elmarket.Utils.CustomButton
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:background="@drawable/signin_background"
+                android:drawableLeft="@drawable/google"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
-                android:drawableLeft="@drawable/google"
-                android:background="@drawable/signin_background"
                 android:text="sign in with google"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15ssp" />
@@ -143,25 +152,20 @@
                 android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:gravity="center"
-                android:padding="@dimen/_10sdp"
-                android:text="sign in with facebook"
                 android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:background="@drawable/signin_background"
-                android:textColor="@color/black"
                 android:drawableLeft="@drawable/facebook"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="sign in with facebook"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_15ssp" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-
-
-
-
 
 
     <LinearLayout

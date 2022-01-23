@@ -8,14 +8,16 @@ import com.a7medkenawy.elmarket.databinding.ActivityLoginBinding
 import android.view.Gravity
 
 import android.R
+import android.text.TextUtils
 import android.view.View
 
 import android.widget.TextView
 
 import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseAuth
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,11 +29,54 @@ class LoginActivity : AppCompatActivity() {
         binding.loginTvRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+
+        binding.LoginForgotPassword.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
+        }
+
         binding.loginBtnLogin.setOnClickListener {
 
-
-
+            signInWithEmailAndPassword()
 //            Toast.makeText(this@LoginActivity,"Hi Ahmed",Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun validateLoginEditText(): Boolean {
+        return when {
+            TextUtils.isEmpty(binding.loginEdEmail.text.toString().trim()) -> {
+                showErrorSnackBar("please enter email.", false)
+                false
+            }
+
+            TextUtils.isEmpty(binding.loginEdEmail.text.toString().trim()) -> {
+                showErrorSnackBar("please enter password.", false)
+                false
+            }
+
+            else -> {
+                showCustomToast()
+                true
+            }
+        }
+    }
+
+    private fun signInWithEmailAndPassword() {
+        if (validateLoginEditText()) {
+
+            var email = binding.loginEdEmail.text.toString().trim()
+            var password = binding.loginEdPassword.text.toString().trim()
+
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        var firebaseUser = task.result.user
+
+                        showCustomToast()
+                    }
+
+                }.addOnFailureListener {
+                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                }
         }
     }
 }

@@ -49,6 +49,8 @@ dependencies {
     //firebase
     implementation 'com.google.firebase:firebase-bom:29.0.3'
     implementation 'com.google.firebase:firebase-analytics-ktx:20.0.2'
+    //firebase auth
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
 
     //sdp
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
@@ -58,4 +60,6 @@ dependencies {
 
     //lottie files
     implementation "com.airbnb.android:lottie:4.2.2"
+
+
 }

@@ -135,7 +135,7 @@
         android:textColor="#626060" />
 
     <com.a7medkenawy.elmarket.Utils.CustomButton
-        android:id="@+id/btn_login"
+        android:id="@+id/Register_btn_login"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -161,7 +161,6 @@
             android:textSize="@dimen/_15ssp" />
 
         <TextView
-
             android:id="@+id/Register_tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
