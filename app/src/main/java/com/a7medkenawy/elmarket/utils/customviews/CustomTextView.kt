@@ -1,10 +1,9 @@
-package com.a7medkenawy.elmarket.Utils
+package com.a7medkenawy.elmarket.utils.customviews
 
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import java.util.jar.Attributes
 
 class CustomTextView(context: Context, attributes: AttributeSet) :
     AppCompatTextView(context, attributes) {

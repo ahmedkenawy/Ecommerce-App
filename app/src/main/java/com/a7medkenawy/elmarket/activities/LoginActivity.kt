@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.TextView
 
 import android.view.ViewGroup
+import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -70,8 +71,10 @@ class LoginActivity : BaseActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         var firebaseUser = task.result.user
-
+                        FireStoreClass().getUserDetails(this)
                         showCustomToast()
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
                     }
 
                 }.addOnFailureListener {

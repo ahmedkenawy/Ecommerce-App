@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
-        <com.a7medkenawy.elmarket.Utils.CustomTextView
+        <com.a7medkenawy.elmarket.utils.customviews.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -134,7 +134,7 @@
         android:text="@string/terms_condition"
         android:textColor="#626060" />
 
-    <com.a7medkenawy.elmarket.Utils.CustomButton
+    <com.a7medkenawy.elmarket.utils.customviews.CustomButton
         android:id="@+id/Register_btn_login"
         android:layout_width="@dimen/_250sdp"
         android:layout_height="wrap_content"

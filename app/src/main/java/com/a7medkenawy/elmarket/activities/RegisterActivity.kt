@@ -11,6 +11,8 @@ import android.widget.Toast
 import android.widget.Toolbar
 import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityRegisterBinding
+import com.a7medkenawy.elmarket.firestore.FireStoreClass
+import com.a7medkenawy.elmarket.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -46,7 +48,13 @@ class RegisterActivity : BaseActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         var firebaseUser = task.result.user
-
+                        val user = User(
+                            firebaseUser?.uid,
+                            binding.RegisterEdFirstName.text.toString(),
+                            binding.RegisterEdLastName.text.toString(),
+                            binding.RegisterEdEmail.text.toString()
+                        )
+                        FireStoreClass().registerUser(this@RegisterActivity, user)
                         showCustomToast()
                     }
 

@@ -1,11 +1,11 @@
-package com.a7medkenawy.elmarket.Utils
+package com.a7medkenawy.elmarket.utils.customviews
 
 import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
-class CustomButton(context: Context, attributes: AttributeSet) :
+class CustomEditText(context: Context, attributes: AttributeSet) :
     AppCompatTextView(context, attributes) {
 
 

@@ -15,4 +15,5 @@
     <string name="err_msg_agree_terms_and_condition">Please agree terms and condition.</string>
     <string name="reset_password">Enter your email address we will send you a email to reset your password</string>
     <string name="resetButton">Reset</string>
+    <string name="profile_save">save</string>
 </resources>

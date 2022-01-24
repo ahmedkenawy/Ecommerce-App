@@ -51,6 +51,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx:20.0.2'
     //firebase auth
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
+    //firebase fireStore
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.0.0'
 
     //sdp
     implementation 'com.intuit.sdp:sdp-android:1.0.6'

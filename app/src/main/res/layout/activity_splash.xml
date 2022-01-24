@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.374"
         app:srcCompat="@drawable/logo" />
 
-    <com.a7medkenawy.elmarket.Utils.CustomTextView
+    <com.a7medkenawy.elmarket.utils.customviews.CustomTextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
