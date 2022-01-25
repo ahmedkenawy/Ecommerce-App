@@ -1,14 +1,15 @@
 package com.a7medkenawy.elmarket.firestore
 
 import android.content.Context
-import android.content.SharedPreferences
+import android.content.Intent
 import android.widget.Toast
 import com.a7medkenawy.elmarket.activities.LoginActivity
+import com.a7medkenawy.elmarket.activities.MainActivity
 import com.a7medkenawy.elmarket.activities.RegisterActivity
+import com.a7medkenawy.elmarket.activities.UserProfileActivity
 import com.a7medkenawy.elmarket.models.User
 import com.a7medkenawy.elmarket.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
 class FireStoreClass {
@@ -27,7 +28,7 @@ class FireStoreClass {
             }
     }
 
-    fun getCurrentUser(): String {
+    private fun getCurrentUser(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         var currentUserId = ""
@@ -43,15 +44,41 @@ class FireStoreClass {
             .get()
             .addOnSuccessListener { document ->
                 val user = document.toObject(User::class.java)
-                val sharedPreferences = activity.getSharedPreferences(
-                    Constants.SharedPreferencesName,
-                    Context.MODE_PRIVATE
-                )
-                sharedPreferences.edit()
-                    .putString(Constants.userName, "${user?.firstName} ${user?.lastName}").apply()
+
+                when (user!!.completed) {
+                    0 -> {
+                        sendDataToUserProfile(activity, user)
+                    }
+                    1 -> {
+                        sendDataToMainActivity(activity, user)
+                    }
+                }
+
+
             }
             .addOnFailureListener {
                 Toast.makeText(activity.baseContext, it.message, Toast.LENGTH_LONG).show()
             }
     }
+
+    private fun sendDataToUserProfile(activity: LoginActivity, user: User) {
+        val intent = Intent(activity.baseContext, UserProfileActivity::class.java)
+        intent.putExtra(Constants.USER_DETAILS, user)
+        activity.startActivity(intent)
+    }
+
+
+    private fun sendDataToMainActivity(activity: LoginActivity, user: User) {
+        val sharedPreferences = activity.getSharedPreferences(
+            Constants.SharedPreferencesName,
+            Context.MODE_PRIVATE
+        )
+        sharedPreferences.edit()
+            .putString(Constants.userName, "${user?.firstName} ${user?.lastName}").apply()
+
+        val intent = Intent(activity.baseContext, MainActivity::class.java)
+        activity.startActivity(intent)
+    }
+
+
 }

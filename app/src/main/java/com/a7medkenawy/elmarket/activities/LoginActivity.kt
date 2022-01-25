@@ -38,7 +38,6 @@ class LoginActivity : BaseActivity() {
         binding.loginBtnLogin.setOnClickListener {
 
             signInWithEmailAndPassword()
-//            Toast.makeText(this@LoginActivity,"Hi Ahmed",Toast.LENGTH_LONG).show()
         }
     }
 
@@ -72,9 +71,6 @@ class LoginActivity : BaseActivity() {
                     if (task.isSuccessful) {
                         var firebaseUser = task.result.user
                         FireStoreClass().getUserDetails(this)
-                        showCustomToast()
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
                     }
 
                 }.addOnFailureListener {
