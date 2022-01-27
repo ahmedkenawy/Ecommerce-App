@@ -14,23 +14,28 @@
         <com.a7medkenawy.elmarket.utils.customviews.CustomTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:textSize="@dimen/_18sdp"
             android:layout_gravity="center"
-            android:text="Update Profile"/>
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Update Profile"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp" />
 
-        <ImageView
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
             android:layout_gravity="center"
+
             android:layout_marginTop="@dimen/_10sdp"
-            android:scaleType="centerCrop"
             android:src="@drawable/default_profile_image"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/Profile_first_name"
@@ -80,7 +85,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/_10sdp"
             android:backgroundTint="@null"
-            android:hint="Email ID"
+            android:hint="Email"
             app:boxStrokeColor="@color/bradColor">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -99,11 +104,12 @@
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/_10sdp"
             android:backgroundTint="@null"
-            android:hint="Email ID"
+            android:hint="Phone Number"
             app:boxStrokeColor="@color/bradColor">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/Profile_ed_phone"
+                android:inputType="phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat" />
@@ -114,33 +120,35 @@
             android:layout_width="@dimen/_250sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:checkedButton="@+id/rb_male"
+            >
 
             <com.a7medkenawy.elmarket.utils.customviews.CustomRadioButton
+                android:id="@+id/rb_male"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_35sdp"
-                android:layout_weight="1"
-                android:text="Male"
-                android:gravity="center"
-                android:button="@null"
                 android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
                 android:background="@drawable/radio_button_background"
-                />
+                android:button="@null"
+                android:gravity="center"
+                android:text="Male" />
 
             <com.a7medkenawy.elmarket.utils.customviews.CustomRadioButton
+                android:id="@+id/rb_female"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_35sdp"
-                android:layout_weight="1"
-                android:text="Female"
-                android:gravity="center"
-                android:button="@null"
                 android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
                 android:background="@drawable/radio_button_background"
-                />
+                android:button="@null"
+                android:gravity="center"
+                android:text="Female" />
         </RadioGroup>
 
         <com.a7medkenawy.elmarket.utils.customviews.CustomButton
-            android:id="@+id/Register_btn_login"
+            android:id="@+id/Profile_btn_save"
             android:layout_width="@dimen/_250sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

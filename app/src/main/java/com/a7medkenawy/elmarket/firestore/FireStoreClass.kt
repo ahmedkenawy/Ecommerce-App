@@ -1,5 +1,6 @@
 package com.a7medkenawy.elmarket.firestore
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
@@ -78,6 +79,29 @@ class FireStoreClass {
 
         val intent = Intent(activity.baseContext, MainActivity::class.java)
         activity.startActivity(intent)
+    }
+
+
+    fun updateUserDetails(activity: Activity, userHashMap: HashMap<String, Any>) {
+        fireStore.collection(Constants.USERS)
+            .document(getCurrentUser())
+            .update(userHashMap)
+            .addOnSuccessListener {
+                when (activity) {
+                    is UserProfileActivity -> {
+                        activity.startActivity(
+                            Intent(
+                                activity.baseContext,
+                                MainActivity::class.java
+                            )
+                        )
+                    }
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(activity.baseContext, "Failed", Toast.LENGTH_LONG).show()
+                activity.finish()
+            }
     }
 
 
