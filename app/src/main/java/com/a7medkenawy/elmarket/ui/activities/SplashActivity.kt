@@ -1,4 +1,4 @@
-package com.a7medkenawy.elmarket.activities
+package com.a7medkenawy.elmarket.ui.activities
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
     fun setSplashTime() {
         @Suppress("DEPRECATION")
         Handler().postDelayed({
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, DashBoardActivity::class.java))
             finish()
         }, 3000)
     }

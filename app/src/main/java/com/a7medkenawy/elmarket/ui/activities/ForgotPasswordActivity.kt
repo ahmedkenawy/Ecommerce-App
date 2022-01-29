@@ -1,9 +1,8 @@
-package com.a7medkenawy.elmarket.activities
+package com.a7medkenawy.elmarket.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityForgotPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
 

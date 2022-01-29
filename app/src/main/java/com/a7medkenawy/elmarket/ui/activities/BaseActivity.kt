@@ -1,4 +1,4 @@
-package com.a7medkenawy.elmarket.activities
+package com.a7medkenawy.elmarket.ui.activities
 
 import android.view.Gravity
 import android.view.View

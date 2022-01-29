@@ -1,19 +1,12 @@
-package com.a7medkenawy.elmarket.activities
+package com.a7medkenawy.elmarket.ui.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.a7medkenawy.elmarket.databinding.ActivityLoginBinding
-import android.view.Gravity
 
-import android.R
 import android.text.TextUtils
-import android.view.View
 
-import android.widget.TextView
-
-import android.view.ViewGroup
 import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.google.firebase.auth.FirebaseAuth
 
@@ -69,7 +62,6 @@ class LoginActivity : BaseActivity() {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        var firebaseUser = task.result.user
                         FireStoreClass().getUserDetails(this)
                     }
 

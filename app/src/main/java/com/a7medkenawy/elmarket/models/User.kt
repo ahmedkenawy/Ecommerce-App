@@ -10,6 +10,7 @@ data class User(
     val lastName: String = "",
     val email: String = "",
     val mobile: Long = 0,
+    val image:String="",
     val gender: String = "",
     val completed: Int = 0
 ):Parcelable

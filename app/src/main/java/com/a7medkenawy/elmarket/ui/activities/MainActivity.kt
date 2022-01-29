@@ -1,9 +1,8 @@
-package com.a7medkenawy.elmarket.activities
+package com.a7medkenawy.elmarket.ui.activities
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityMainBinding
 import com.a7medkenawy.elmarket.utils.Constants
 

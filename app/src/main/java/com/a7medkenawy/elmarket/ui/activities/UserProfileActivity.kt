@@ -1,8 +1,6 @@
-package com.a7medkenawy.elmarket.activities
+package com.a7medkenawy.elmarket.ui.activities
 
 import android.Manifest
-import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.a7medkenawy.elmarket.R
@@ -14,7 +12,6 @@ import android.widget.Toast
 
 import androidx.core.content.ContextCompat
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.startActivityForResult
 
 import android.content.Intent
 import android.net.Uri
@@ -29,6 +26,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     lateinit var user: User
     lateinit var binding: ActivityUserProfileBinding
     lateinit var userHasMap: HashMap<String, Any>
+    private var selectedImage:Uri?=null
+    private var profile_image:String?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +44,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-    private fun handleUI(){
+    private fun handleUI() {
         binding.ProfileEdFirstName.isEnabled = false
         binding.ProfileEdFirstName.setText(user.firstName)
 
@@ -67,12 +66,15 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 askForPermissions()
             }
             R.id.Profile_btn_save -> {
+                if (selectedImage!=null){
+                    FireStoreClass().uploadImageToCloudStorage(this, selectedImage!!)
+                }
                 handleUserUpdates()
             }
         }
     }
 
-    private fun askForPermissions(){
+    private fun askForPermissions() {
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.CAMERA
@@ -94,7 +96,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             )
         }
     }
-    private fun handleUserUpdates(){
+
+    private fun handleUserUpdates() {
         if (validateUserPhone()) {
 
             val mobileNumber = binding.ProfileEdPhone.text.toString().trim()
@@ -106,6 +109,13 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 userHasMap["gender"] = "male"
             } else {
                 userHasMap["gender"] = "female"
+            }
+            if (profile_image!=null){
+                userHasMap["image"]= profile_image!!
+            }
+
+            if(mobileNumber.isNotEmpty()&&profile_image!=null){
+                userHasMap["completed"]= 1
             }
 
             FireStoreClass().updateUserDetails(this, userHasMap)
@@ -136,7 +146,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
         when (requestCode) {
             1 -> if (resultCode === RESULT_OK) {
-                val selectedImage = data?.data
+                selectedImage = data?.data
 
                 Glide
                     .with(this)
@@ -144,6 +154,9 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     .centerCrop()
                     .placeholder(R.drawable.default_profile_image)
                     .into(binding.profileImage);
+
+
+
             }
 
         }
@@ -161,5 +174,10 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             }
 
         }
+    }
+
+    fun uploadProfileImage(imageProfile:String){
+        profile_image=imageProfile
+        handleUserUpdates()
     }
 }
