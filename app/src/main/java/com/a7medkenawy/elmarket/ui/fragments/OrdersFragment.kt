@@ -4,15 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.a7medkenawy.elmarket.databinding.FragmentDashboardBinding
+import com.a7medkenawy.elmarket.databinding.FragmentOrdersBinding
 
-class DashboardFragment : Fragment() {
+class OrdersFragment : Fragment() {
 
-    lateinit var binding: FragmentDashboardBinding
+    lateinit var binding: FragmentOrdersBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,12 +17,11 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        binding = FragmentOrdersBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 
         return root
     }
-
 
 }

@@ -12,6 +12,7 @@ object Constants {
     const val USER_DETAILS = "userDetails"
     const val USER_Profile_Image = "userProfileImage"
     const val SP_Profile_Image = "userProfileImage"
+    const val TAG="tag"
 
 
     fun getImageExtension(activity: Activity, ImageUri: Uri): String {

@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.a7medkenawy.elmarket.databinding.FragmentNotificationsBinding
+import com.a7medkenawy.elmarket.databinding.FragmentHomeBinding
+import com.a7medkenawy.elmarket.databinding.FragmentProductsBinding
 
-class NotificationsFragment : Fragment() {
+class ProductsFragment : Fragment() {
 
-    lateinit var binding: FragmentNotificationsBinding
+    lateinit var binding: FragmentProductsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,11 +18,12 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        binding = FragmentProductsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 
         return root
     }
+
 
 }

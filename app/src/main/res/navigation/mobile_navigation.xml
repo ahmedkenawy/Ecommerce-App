@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.a7medkenawy.elmarket.ui.fragments.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_products"
+        android:name="com.a7medkenawy.elmarket.ui.fragments.ProductsFragment"
+        android:label="@string/title_products"
+        tools:layout="@layout/fragment_products" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.a7medkenawy.elmarket.ui.fragments.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_orders"
+        android:name="com.a7medkenawy.elmarket.ui.fragments.OrdersFragment"
+        android:label="@string/title_orders"
+        tools:layout="@layout/fragment_orders" />
 </navigation>

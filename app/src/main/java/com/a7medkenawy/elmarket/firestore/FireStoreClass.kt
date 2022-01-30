@@ -5,11 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
-import com.a7medkenawy.elmarket.ui.activities.LoginActivity
-import com.a7medkenawy.elmarket.ui.activities.MainActivity
-import com.a7medkenawy.elmarket.ui.activities.RegisterActivity
-import com.a7medkenawy.elmarket.ui.activities.UserProfileActivity
 import com.a7medkenawy.elmarket.models.User
+import com.a7medkenawy.elmarket.ui.activities.*
 import com.a7medkenawy.elmarket.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -42,19 +39,29 @@ class FireStoreClass {
         return currentUserId
     }
 
-    fun getUserDetails(activity: LoginActivity) {
+    fun getUserDetails(activity: Activity) {
         fireStore.collection(Constants.USERS)
             .document(getCurrentUser())
             .get()
             .addOnSuccessListener { document ->
                 val user = document.toObject(User::class.java)
+                when (activity) {
 
-                when (user!!.completed) {
-                    0 -> {
-                        sendDataToUserProfile(activity, user)
+                    is LoginActivity -> {
+                        when (user!!.completed) {
+                            0 -> {
+                                sendDataToUserProfile(activity, user!!)
+                            }
+                            1 -> {
+                                sendDataToMainActivity(activity, user!!)
+                            }
+                        }
                     }
-                    1 -> {
-                        sendDataToMainActivity(activity, user)
+
+                    is SettingsActivity -> {
+                        if (user != null) {
+                            activity.insertDataInViews(user)
+                        }
                     }
                 }
 
@@ -62,10 +69,11 @@ class FireStoreClass {
             }
             .addOnFailureListener {
                 Toast.makeText(activity.baseContext, it.message, Toast.LENGTH_LONG).show()
+
             }
     }
 
-    private fun sendDataToUserProfile(activity: LoginActivity, user: User) {
+    private fun sendDataToUserProfile(activity: Activity, user: User) {
         val intent = Intent(activity.baseContext, UserProfileActivity::class.java)
         intent.putExtra(Constants.USER_DETAILS, user)
         activity.startActivity(intent)
@@ -73,7 +81,7 @@ class FireStoreClass {
     }
 
 
-    private fun sendDataToMainActivity(activity: LoginActivity, user: User) {
+    private fun sendDataToMainActivity(activity: Activity, user: User) {
         val sharedPreferences = activity.getSharedPreferences(
             Constants.SharedPreferencesName,
             Context.MODE_PRIVATE
@@ -81,7 +89,7 @@ class FireStoreClass {
         sharedPreferences.edit()
             .putString(Constants.userName, "${user?.firstName} ${user?.lastName}").apply()
 
-        val intent = Intent(activity.baseContext, MainActivity::class.java)
+        val intent = Intent(activity.baseContext, DashBoardActivity::class.java)
         activity.startActivity(intent)
         activity.finish()
     }

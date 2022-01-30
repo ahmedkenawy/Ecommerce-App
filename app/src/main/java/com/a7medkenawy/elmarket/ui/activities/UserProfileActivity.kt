@@ -26,22 +26,37 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     lateinit var user: User
     lateinit var binding: ActivityUserProfileBinding
     lateinit var userHasMap: HashMap<String, Any>
-    private var selectedImage:Uri?=null
-    private var profile_image:String?=null
-
+    private var selectedImage: Uri? = null
+    private var profile_image: String? = null
+    var tag = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         userHasMap = HashMap()
 
+
         if (intent.hasExtra(Constants.USER_DETAILS)) {
             user = intent.getParcelableExtra(Constants.USER_DETAILS)!!
+
         }
+
+
 
         handleUI()
 
 
+    }
+
+    private fun loadData(tag: Int) {
+        if (tag == 1) {
+            binding.ProfileEdFirstName.isEnabled = true
+            binding.ProfileEdLastName.isEnabled = true
+            binding.ProfilerEdEmail.isEnabled = true
+        } else {
+            Toast.makeText(this, "Yalaaahooy", Toast.LENGTH_LONG).show()
+
+        }
     }
 
     private fun handleUI() {
@@ -66,7 +81,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 askForPermissions()
             }
             R.id.Profile_btn_save -> {
-                if (selectedImage!=null){
+                if (selectedImage != null) {
                     FireStoreClass().uploadImageToCloudStorage(this, selectedImage!!)
                 }
                 handleUserUpdates()
@@ -110,12 +125,12 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             } else {
                 userHasMap["gender"] = "female"
             }
-            if (profile_image!=null){
-                userHasMap["image"]= profile_image!!
+            if (profile_image != null) {
+                userHasMap["image"] = profile_image!!
             }
 
-            if(mobileNumber.isNotEmpty()&&profile_image!=null){
-                userHasMap["completed"]= 1
+            if (mobileNumber.isNotEmpty() && profile_image != null) {
+                userHasMap["completed"] = 1
             }
 
             FireStoreClass().updateUserDetails(this, userHasMap)
@@ -156,7 +171,6 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                     .into(binding.profileImage);
 
 
-
             }
 
         }
@@ -176,8 +190,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    fun uploadProfileImage(imageProfile:String){
-        profile_image=imageProfile
+    fun uploadProfileImage(imageProfile: String) {
+        profile_image = imageProfile
         handleUserUpdates()
     }
 }

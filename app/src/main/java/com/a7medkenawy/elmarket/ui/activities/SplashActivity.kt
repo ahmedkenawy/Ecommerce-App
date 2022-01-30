@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
     fun setSplashTime() {
         @Suppress("DEPRECATION")
         Handler().postDelayed({
-            startActivity(Intent(this, DashBoardActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }, 3000)
     }
