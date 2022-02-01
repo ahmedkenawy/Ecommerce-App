@@ -23,55 +23,72 @@ import com.bumptech.glide.Glide
 
 class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
-    lateinit var user: User
     lateinit var binding: ActivityUserProfileBinding
     lateinit var userHasMap: HashMap<String, Any>
     private var selectedImage: Uri? = null
     private var profile_image: String? = null
-    var tag = 0
+    var user: User? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUserProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         userHasMap = HashMap()
 
-
         if (intent.hasExtra(Constants.USER_DETAILS)) {
             user = intent.getParcelableExtra(Constants.USER_DETAILS)!!
 
         }
 
-
-
-        handleUI()
-
-
-    }
-
-    private fun loadData(tag: Int) {
-        if (tag == 1) {
-            binding.ProfileEdFirstName.isEnabled = true
-            binding.ProfileEdLastName.isEnabled = true
-            binding.ProfilerEdEmail.isEnabled = true
+        if (user?.completed == 0) {
+            disableViews()
         } else {
-            Toast.makeText(this, "Yalaaahooy", Toast.LENGTH_LONG).show()
-
+            enableViews()
         }
-    }
-
-    private fun handleUI() {
-        binding.ProfileEdFirstName.isEnabled = false
-        binding.ProfileEdFirstName.setText(user.firstName)
-
-        binding.ProfileEdLastName.isEnabled = false
-        binding.ProfileEdLastName.setText(user.lastName)
 
 
-        binding.ProfilerEdEmail.isEnabled = false
-        binding.ProfilerEdEmail.setText(user.email)
+
 
         binding.profileImage.setOnClickListener(this)
         binding.ProfileBtnSave.setOnClickListener(this)
+
+    }
+
+
+    private fun disableViews() {
+        binding.ProfileEdFirstName.isEnabled = false
+        binding.ProfileEdFirstName.setText(user?.firstName)
+
+        binding.ProfileEdLastName.isEnabled = false
+        binding.ProfileEdLastName.setText(user?.lastName)
+
+
+        binding.ProfilerEdEmail.isEnabled = false
+        binding.ProfilerEdEmail.setText(user?.email)
+
+
+    }
+
+    private fun enableViews() {
+        binding.ProfileEdFirstName.isEnabled = true
+        binding.ProfileEdFirstName.setText(user?.firstName)
+
+        binding.ProfileEdLastName.isEnabled = true
+        binding.ProfileEdLastName.setText(user?.lastName)
+
+
+        binding.ProfilerEdEmail.isEnabled = true
+        binding.ProfilerEdEmail.setText(user?.email)
+
+        binding.ProfileEdPhone.setText(user?.mobile.toString())
+
+        if (user?.gender.equals("male")){
+            binding.rbMale.isChecked=true
+        }else{
+            binding.rbFemale.isChecked=true
+        }
+
+        Glide.with(this).load(user?.image).into(binding.profileImage)
+
     }
 
     override fun onClick(v: View?) {
@@ -115,15 +132,34 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
     private fun handleUserUpdates() {
         if (validateUserPhone()) {
 
+            val firstName = binding.ProfileEdFirstName.text.toString().trim()
+            if (firstName.isNotEmpty()&&firstName!=user?.firstName){
+                userHasMap["firstName"] = firstName
+            }
+
+            val lastName = binding.ProfileEdLastName.text.toString().trim()
+            if (lastName.isNotEmpty()&&lastName!=user?.lastName){
+                userHasMap["lastName"] = lastName
+            }
+
+            val email = binding.ProfilerEdEmail.text.toString().trim()
+            if (email.isNotEmpty()&&email!=user?.email){
+                userHasMap["email"] = email
+            }
+
+
+
             val mobileNumber = binding.ProfileEdPhone.text.toString().trim()
-            if (mobileNumber.isNotEmpty()) {
+            if (mobileNumber.isNotEmpty()&&mobileNumber!=user?.mobile.toString()) {
                 userHasMap["mobile"] = mobileNumber.toLong()
             }
 
             if (binding.rbMale.isChecked) {
                 userHasMap["gender"] = "male"
             } else {
+                binding.rbFemale.isChecked=true
                 userHasMap["gender"] = "female"
+
             }
             if (profile_image != null) {
                 userHasMap["image"] = profile_image!!

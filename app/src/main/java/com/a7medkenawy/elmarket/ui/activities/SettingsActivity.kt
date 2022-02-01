@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class SettingsActivity : AppCompatActivity() , View.OnClickListener {
 
+    private lateinit var mUserDetails:User
     lateinit var binding: ActivitySettingsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,7 @@ class SettingsActivity : AppCompatActivity() , View.OnClickListener {
     }
 
     fun insertDataInViews(user: User) {
+        mUserDetails=user
         binding.tvName.text = "${user.firstName} ${user.lastName}"
         binding.tvEmail.text=user.email
         binding.tvMobileNumber.text="0${user.mobile.toString()}"
@@ -46,11 +48,17 @@ class SettingsActivity : AppCompatActivity() , View.OnClickListener {
 
             }
             R.id.tv_edit->{
-                val intent=Intent(this,UserProfileActivity::class.java)
-                intent.putExtra(Constants.TAG,1)
+                val intent = Intent(this, UserProfileActivity::class.java)
+                intent.putExtra(Constants.USER_DETAILS, mUserDetails)
                 startActivity(intent)
-                return
             }
         }
+    }
+
+    fun sendUserToUserProfile(user: User?=null){
+        val intent=Intent(this,UserProfileActivity::class.java)
+        intent.putExtra(Constants.TAG,user)
+        startActivity(intent)
+        return
     }
 }

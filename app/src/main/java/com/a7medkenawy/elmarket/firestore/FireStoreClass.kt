@@ -105,7 +105,7 @@ class FireStoreClass {
                         activity.startActivity(
                             Intent(
                                 activity.baseContext,
-                                MainActivity::class.java
+                                DashBoardActivity::class.java
                             )
                         )
                         activity.finish()
