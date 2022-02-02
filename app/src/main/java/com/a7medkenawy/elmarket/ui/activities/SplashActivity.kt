@@ -7,9 +7,18 @@ import android.view.View
 import android.content.Intent
 import android.os.Handler
 import com.a7medkenawy.elmarket.R
+import com.google.firebase.auth.FirebaseAuth
 
 
 class SplashActivity : AppCompatActivity() {
+
+    override fun onStart() {
+        super.onStart()
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            startActivity(Intent(this, DashBoardActivity::class.java))
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

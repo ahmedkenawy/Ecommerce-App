@@ -118,10 +118,10 @@ class FireStoreClass {
             }
     }
 
-    fun uploadImageToCloudStorage(activity: Activity, imageUri: Uri) {
+    fun uploadImageToCloudStorage(activity: Activity, imageUri: Uri,imageType:String) {
 
         val fRef = FirebaseStorage.getInstance().reference.child(
-            "${Constants.USER_Profile_Image} ${System.currentTimeMillis()}.${
+            "${imageType} ${System.currentTimeMillis()}.${
                 Constants.getImageExtension(
                     activity,
                     imageUri
@@ -136,6 +136,9 @@ class FireStoreClass {
                     when (activity) {
                         is UserProfileActivity -> {
                             activity.uploadProfileImage(it.toString())
+                        }
+                        is AddProductActivity->{
+                            activity.uploadProductImage(it)
                         }
                     }
                 }

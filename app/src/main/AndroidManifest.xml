@@ -13,10 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ElMarket">
         <activity
-            android:name=".ui.activities.SettingsActivity"
+            android:name=".ui.activities.AddProductActivity"
             android:exported="false"
             android:theme="@style/SplashTheme"
             />
+        <activity
+            android:name=".ui.activities.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".ui.activities.DashBoardActivity"
             android:exported="false"
@@ -24,7 +28,7 @@
         <activity
             android:name=".ui.activities.UserProfileActivity"
             android:exported="false"
-            android:theme="@style/SplashTheme"/>
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".ui.activities.ForgotPasswordActivity"
             android:exported="false"
