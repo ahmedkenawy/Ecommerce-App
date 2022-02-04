@@ -1,15 +1,18 @@
 package com.a7medkenawy.elmarket.ui.activities
 
+import android.app.Dialog
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.a7medkenawy.elmarket.R
+import com.a7medkenawy.elmarket.databinding.ActivityAddProductBinding
 import com.google.android.material.snackbar.Snackbar
 
 open class BaseActivity : AppCompatActivity() {
 
+    private lateinit var mProgressDialog: Dialog
     fun showErrorSnackBar(message: String, errorMessage: Boolean) {
         val snackBar =
             Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
@@ -45,4 +48,19 @@ open class BaseActivity : AppCompatActivity() {
         toast.show()
     }
 
+    fun showProgressDialog() {
+        mProgressDialog = Dialog(this)
+
+        mProgressDialog.setContentView(R.layout.dialog_progress)
+
+        mProgressDialog.setCancelable(false)
+        mProgressDialog.setCanceledOnTouchOutside(false)
+
+        //Start the dialog and display it on screen.
+        mProgressDialog.show()
+    }
+
+    fun hideProgressDialog() {
+        mProgressDialog.dismiss()
+    }
 }

@@ -13,11 +13,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sharedPreferences = getSharedPreferences(
-            Constants.SharedPreferencesName,
-            Context.MODE_PRIVATE
-        )
-        val username = sharedPreferences.getString(Constants.userName, "No User Name")
-        binding.myTV.text = username
+
     }
 }

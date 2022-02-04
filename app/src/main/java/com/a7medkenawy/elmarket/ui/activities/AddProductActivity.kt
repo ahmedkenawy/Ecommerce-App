@@ -1,5 +1,6 @@
 package com.a7medkenawy.elmarket.ui.activities
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityAddProductBinding
 import androidx.core.app.ActivityCompat.startActivityForResult
 import com.a7medkenawy.elmarket.firestore.FireStoreClass
+import com.a7medkenawy.elmarket.models.Product
 import com.a7medkenawy.elmarket.utils.Constants
 import com.bumptech.glide.Glide
 
@@ -17,6 +19,7 @@ import com.bumptech.glide.Glide
 class AddProductActivity : BaseActivity(), View.OnClickListener {
 
     var selectedImage: Uri? = null
+    var selectedImageUrl: String? = null
 
     lateinit var binding: ActivityAddProductBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +43,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             R.id.add_product_submit -> {
                 if (validateViews()) {
                     if (selectedImage != null) {
-                        FireStoreClass().uploadImageToCloudStorage(this, selectedImage!!, Constants.PRODUCT_IMAGE)
-                        showCustomToast()
+                        uploadImageSuccess()
                     }
                 }
             }
@@ -69,6 +71,7 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
             actionBar.title = ""
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_vector_back)
+
         }
     }
 
@@ -102,8 +105,42 @@ class AddProductActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    fun uploadProductImage(imageUri: Uri) {
-        selectedImage = imageUri
+    private fun uploadImageSuccess() {
+        showProgressDialog()
+        FireStoreClass().uploadImageToCloudStorage(
+            this,
+            selectedImage!!,
+            Constants.PRODUCT_IMAGE
+        )
 
+    }
+
+    fun uploadProductImage(imageUrl: String) {
+        selectedImageUrl = imageUrl
+        uploadProduct()
+    }
+
+    private fun uploadProduct() {
+        val product = Product(
+            FireStoreClass().getCurrentUser(),
+            userName(),
+            binding.addProductTvProductTitle.text.toString().trim(),
+            binding.addProductTvProductPrice.text.toString().trim(),
+            binding.addProductTvDescription.text.toString().trim(),
+            binding.addProductTvProductQuantity.text.toString().trim(),
+            selectedImageUrl!!,
+
+            )
+
+        FireStoreClass().uploadProductDetails(this, product)
+    }
+
+    private fun userName(): String {
+        val sharedPreferences = getSharedPreferences(
+            Constants.SharedPreferencesName,
+            Context.MODE_PRIVATE
+        )
+        val username = sharedPreferences.getString(Constants.userName, "No User Name")
+        return username!!
     }
 }

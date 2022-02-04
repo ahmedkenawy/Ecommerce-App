@@ -99,7 +99,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             }
             R.id.Profile_btn_save -> {
                 if (selectedImage != null) {
-                    FireStoreClass().uploadImageToCloudStorage(this, selectedImage!!,Constants.USER_Profile_Image)
+                    FireStoreClass().uploadImageToCloudStorage(this, selectedImage!!,Constants.PROFILE_IMAGE)
                 }
                 handleUserUpdates()
             }

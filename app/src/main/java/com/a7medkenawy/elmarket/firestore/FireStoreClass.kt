@@ -5,8 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.a7medkenawy.elmarket.models.Product
 import com.a7medkenawy.elmarket.models.User
 import com.a7medkenawy.elmarket.ui.activities.*
+import com.a7medkenawy.elmarket.ui.fragments.HomeFragment
+import com.a7medkenawy.elmarket.ui.fragments.ProductsFragment
 import com.a7medkenawy.elmarket.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -22,14 +26,25 @@ class FireStoreClass {
             .document(user.id!!)
             .set(user)
             .addOnSuccessListener {
-                Toast.makeText(activity.baseContext, "Successfully", Toast.LENGTH_LONG).show()
+                activity.showCustomToast()
+                saveUserName(activity, user.firstName, user.lastName)
+                activity.startActivity(Intent(activity.baseContext, LoginActivity::class.java))
             }
             .addOnFailureListener {
                 Toast.makeText(activity.baseContext, "Successfully", Toast.LENGTH_LONG).show()
             }
     }
 
-    private fun getCurrentUser(): String {
+    private fun saveUserName(activity: RegisterActivity, firstName: String, lastName: String) {
+        val sharedPreferences =
+            activity.getSharedPreferences(Constants.SharedPreferencesName, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+            .putString(Constants.userName, "$firstName $lastName ")
+        editor.apply()
+    }
+
+
+    fun getCurrentUser(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         var currentUserId = ""
@@ -118,7 +133,7 @@ class FireStoreClass {
             }
     }
 
-    fun uploadImageToCloudStorage(activity: Activity, imageUri: Uri,imageType:String) {
+    fun uploadImageToCloudStorage(activity: Activity, imageUri: Uri, imageType: String) {
 
         val fRef = FirebaseStorage.getInstance().reference.child(
             "${imageType} ${System.currentTimeMillis()}.${
@@ -137,8 +152,9 @@ class FireStoreClass {
                         is UserProfileActivity -> {
                             activity.uploadProfileImage(it.toString())
                         }
-                        is AddProductActivity->{
-                            activity.uploadProductImage(it)
+                        is AddProductActivity -> {
+                            activity.uploadProductImage(it.toString())
+                            activity.hideProgressDialog()
                         }
                     }
                 }
@@ -151,5 +167,57 @@ class FireStoreClass {
         }
     }
 
+
+    fun uploadProductDetails(activity: AddProductActivity, product: Product) {
+        fireStore.collection(Constants.PRODUCT)
+            .document()
+            .set(product)
+            .addOnSuccessListener {
+                activity.startActivity(Intent(activity.baseContext, DashBoardActivity::class.java))
+            }
+            .addOnFailureListener {
+                Toast.makeText(activity.baseContext, it.toString(), Toast.LENGTH_LONG).show()
+            }
+    }
+
+    fun getProductDetails(fragment: Fragment) {
+        fireStore.collection(Constants.PRODUCT)
+            .whereEqualTo(Constants.USER_ID, getCurrentUser())
+            .get()
+            .addOnSuccessListener { snapShot ->
+                val productList: ArrayList<Product> = ArrayList()
+                for (i in snapShot.documents) {
+                    val product = i.toObject(Product::class.java)
+                    productList.add(product!!)
+                }
+
+                when (fragment) {
+                    is ProductsFragment -> {
+                        fragment.getProductsDetails(productList)
+                    }
+                }
+            }
+            .addOnFailureListener {
+
+
+            }
+    }
+
+    fun getDashBoardProductsDetails(fragment: HomeFragment) {
+        fireStore.collection(Constants.PRODUCT)
+            .get()
+            .addOnSuccessListener { snapShot ->
+                val productList: ArrayList<Product> = ArrayList()
+                for (i in snapShot.documents) {
+                    val product = i.toObject(Product::class.java)
+                    productList.add(product!!)
+                }
+                fragment.getDashBoardProductsDetails(productList)
+
+            }
+            .addOnFailureListener {
+
+            }
+    }
 
 }
