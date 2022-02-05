@@ -16,6 +16,7 @@ class SplashActivity : AppCompatActivity() {
         super.onStart()
         if (FirebaseAuth.getInstance().currentUser != null) {
             startActivity(Intent(this, DashBoardActivity::class.java))
+            finish()
         }
     }
 

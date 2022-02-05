@@ -188,6 +188,7 @@ class FireStoreClass {
                 val productList: ArrayList<Product> = ArrayList()
                 for (i in snapShot.documents) {
                     val product = i.toObject(Product::class.java)
+                    product?.product_id = i.id
                     productList.add(product!!)
                 }
 
@@ -210,6 +211,7 @@ class FireStoreClass {
                 val productList: ArrayList<Product> = ArrayList()
                 for (i in snapShot.documents) {
                     val product = i.toObject(Product::class.java)
+                    product?.product_id = i.id
                     productList.add(product!!)
                 }
                 fragment.getDashBoardProductsDetails(productList)
@@ -218,6 +220,19 @@ class FireStoreClass {
             .addOnFailureListener {
 
             }
+    }
+
+    fun deleteProduct(fragment: Fragment, productId: String) {
+        fireStore.collection(Constants.PRODUCT)
+            .document(productId)
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(fragment.requireContext(), "Done", Toast.LENGTH_LONG).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(fragment.requireContext(), "Error", Toast.LENGTH_LONG).show()
+            }
+
     }
 
 }

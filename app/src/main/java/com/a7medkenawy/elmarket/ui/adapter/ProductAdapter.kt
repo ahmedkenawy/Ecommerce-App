@@ -9,9 +9,10 @@ import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ProductCustomViewBinding
 import com.a7medkenawy.elmarket.databinding.ProductDashboardCustomViewBinding
 import com.a7medkenawy.elmarket.models.Product
+import com.a7medkenawy.elmarket.ui.fragments.ProductsFragment
 import com.bumptech.glide.Glide
 
-class ProductAdapter(val context: Context, val list: ArrayList<Product>) :
+class ProductAdapter(val context: Context, val list: ArrayList<Product>,val fragment:ProductsFragment) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -25,9 +26,17 @@ class ProductAdapter(val context: Context, val list: ArrayList<Product>) :
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val productItem = list[position]
-        Glide.with(context).load(productItem.image).into(holder.binding.productIV)
-        holder.binding.productTitle.text = productItem.title
-        holder.binding.productPrice.text = "${productItem.price}$"
+
+        with(holder.binding) {
+            Glide.with(context).load(productItem.image).into(productIV)
+            productTitle.text = productItem.title
+            productPrice.text = "${productItem.price}$"
+
+            productDelete.setOnClickListener {
+                fragment.setAlertDialog(productItem.product_id)
+            }
+
+        }
     }
 
     override fun getItemCount(): Int {
