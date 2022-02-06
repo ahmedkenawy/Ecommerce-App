@@ -23,6 +23,8 @@ object Constants {
     const val PROFILE_IMAGE = "user profile image"
     const val PRODUCT_IMAGE = "product image"
 
+    const val PRODUCT_ID="product_id"
+
 
     fun getImageExtension(activity: Activity, ImageUri: Uri): String {
         return MimeTypeMap.getSingleton()

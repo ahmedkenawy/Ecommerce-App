@@ -111,6 +111,7 @@
     <string name="title_edit_profile">EDIT PROFILE</string>
     <string name="add_Product">Add Product</string>
     <string name="noproducts">you did\'t add any Products yet.</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="product_details">product Details</string>
 </resources>

@@ -235,4 +235,23 @@ class FireStoreClass {
 
     }
 
+    fun getProductByID(activity: Activity, productId: String) {
+        fireStore.collection(Constants.PRODUCT)
+            .document(productId)
+            .get()
+            .addOnSuccessListener { document ->
+                val product = document.toObject(Product::class.java)
+                when (activity) {
+                    is ProductDetailsActivity -> {
+                        product?.let {
+                            activity.setProductDetails(product)
+                        }
+                    }
+                }
+            }
+            .addOnFailureListener {
+
+            }
+    }
+
 }

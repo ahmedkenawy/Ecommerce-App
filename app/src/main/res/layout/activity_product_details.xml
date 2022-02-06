@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp"
+    tools:context=".ui.activities.ProductDetailsActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/product_details_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <com.a7medkenawy.elmarket.utils.customviews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/product_details"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:background="@color/ImageColorGray"
+        android:scaleType="centerCrop" />
+
+    <com.a7medkenawy.elmarket.utils.customviews.CustomTextView
+        android:id="@+id/product_details_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="#E7E6E6"
+        android:paddingStart="@dimen/_10sdp"
+        android:text="Title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold" />
+
+    <com.a7medkenawy.elmarket.utils.customviews.CustomTextViewRegular
+        android:id="@+id/product_details_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E7E6E6"
+        android:paddingStart="@dimen/_10sdp"
+        android:text="125$"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp" />
+
+    <com.a7medkenawy.elmarket.utils.customviews.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:text="Product Description"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp" />
+
+    <com.a7medkenawy.elmarket.utils.customviews.CustomTextViewRegular
+        android:id="@+id/product_details_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/_10sdp"
+        android:text="hi ahmed saad kenawy i hope you are well"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <com.a7medkenawy.elmarket.utils.customviews.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_10sdp"
+            android:text="Stock Quantity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp" />
+
+        <com.a7medkenawy.elmarket.utils.customviews.CustomTextView
+            android:id="@+id/product_details_stock_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@drawable/signin_background"
+            android:padding="@dimen/_5sdp"
+            android:text="6"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15sdp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
