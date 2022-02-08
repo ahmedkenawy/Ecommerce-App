@@ -9,6 +9,7 @@ object Constants {
     //  Collections in Cloud FireStore
     const val USERS = "users"
     const val PRODUCT = "products"
+    const val CART_ITEMS = "cart_items"
 
 
     const val SharedPreferencesName = "UserSharedPreferences"
@@ -19,11 +20,14 @@ object Constants {
     const val TAG = "tag"
 
     const val USER_ID="user_id"
+    const val PRODUCT_ID="product_id"
 
     const val PROFILE_IMAGE = "user profile image"
     const val PRODUCT_IMAGE = "product image"
 
-    const val PRODUCT_ID="product_id"
+
+
+    const val CART_QUANTITY: String = "1"
 
 
     fun getImageExtension(activity: Activity, ImageUri: Uri): String {

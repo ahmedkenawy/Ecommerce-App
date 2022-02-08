@@ -10,7 +10,9 @@
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/drawable/ic_fragment_dashboard.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/drawable/ic_vector_add.xml" value="0.22962962962962963" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/drawable/ic_vector_chevron_right.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/drawable/ic_vector_remove.xml" value="0.22962962962962963" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/drawable/image_border.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/drawable/main_background.xml" value="0.2361111111111111" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/drawable/outline_shopping_cart_24.xml" value="0.24114583333333334" />
@@ -18,11 +20,12 @@
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/drawable/radio_button_text_color.xml" value="0.24114583333333334" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/drawable/signin_background.xml" value="0.2361111111111111" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_add_product.xml" value="0.15" />
+        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_cart_list.xml" value="0.18" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_dash_board.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_forgot_password.xml" value="0.18" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_main.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_product_details.xml" value="0.25" />
+        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_product_details.xml" value="0.18" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_settings.xml" value="0.2" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_splash.xml" value="0.22083333333333333" />
@@ -35,11 +38,13 @@
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/fragment_notifications.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/fragment_orders.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/fragment_products.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/product_custom_view.xml" value="0.25" />
+        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/item_cart_layout.xml" value="0.37340619307832423" />
+        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/item_list_layout.xml" value="0.22" />
+        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/product_custom_view.xml" value="0.22" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/product_dashboard_custom_view.xml" value="0.22" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/menu/add_product_menu.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/menu/settings_menu.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/menu/settings_menu.xml" value="0.5" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.24114583333333334" />
       </map>
     </option>

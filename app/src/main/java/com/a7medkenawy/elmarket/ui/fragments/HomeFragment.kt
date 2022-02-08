@@ -11,6 +11,7 @@ import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.FragmentHomeBinding
 import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.a7medkenawy.elmarket.models.Product
+import com.a7medkenawy.elmarket.ui.activities.CartListActivity
 import com.a7medkenawy.elmarket.ui.activities.SettingsActivity
 import com.a7medkenawy.elmarket.ui.adapter.DashboardProductAdapter
 import com.a7medkenawy.elmarket.ui.adapter.ProductAdapter
@@ -52,6 +53,10 @@ class HomeFragment : Fragment() {
                     )
                 )
 
+            }
+            R.id.go_to_cart -> {
+                val intent = Intent(requireContext(), CartListActivity::class.java)
+                startActivity(intent)
             }
         }
 

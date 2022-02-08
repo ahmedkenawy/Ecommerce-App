@@ -17,7 +17,7 @@
             android:id="@+id/dashboard_product_iv"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100sdp"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/dashboard_product_title"

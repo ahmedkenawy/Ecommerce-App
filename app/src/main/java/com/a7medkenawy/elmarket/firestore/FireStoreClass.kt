@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.a7medkenawy.elmarket.models.Cart
 import com.a7medkenawy.elmarket.models.Product
 import com.a7medkenawy.elmarket.models.User
 import com.a7medkenawy.elmarket.ui.activities.*
@@ -254,4 +255,48 @@ class FireStoreClass {
             }
     }
 
+    fun addToCarts(activity: ProductDetailsActivity, cart: Cart) {
+        fireStore.collection(Constants.CART_ITEMS)
+            .document()
+            .set(cart)
+            .addOnSuccessListener {
+                activity.cartAddedSuccessfully()
+            }
+            .addOnFailureListener { }
+    }
+
+    fun checkIfProductExist(activity: ProductDetailsActivity, productId: String) {
+        fireStore.collection(Constants.CART_ITEMS)
+            .whereEqualTo(Constants.PRODUCT_ID, productId)
+            .whereEqualTo(Constants.USER_ID, getCurrentUser())
+            .get()
+            .addOnSuccessListener {
+                if (it.documents.size > 0) {
+                    activity.productExist()
+                }
+            }
+            .addOnFailureListener { }
+    }
+
+    fun getProductsInCart(activity: Activity) {
+        fireStore.collection(Constants.CART_ITEMS)
+            .whereEqualTo(Constants.USER_ID, getCurrentUser())
+            .get()
+            .addOnSuccessListener {
+                val cartItems = ArrayList<Cart>()
+                for (i in it.documents) {
+                    val product = i.toObject(Cart::class.java)
+                    product?.id=i.id
+                    cartItems.add(product!!)
+                }
+
+                when (activity) {
+                    is CartListActivity -> {
+                        activity.showCartList(cartItems)
+                    }
+                }
+
+            }
+            .addOnFailureListener { }
+    }
 }

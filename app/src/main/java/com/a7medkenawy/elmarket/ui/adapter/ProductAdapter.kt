@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ProductCustomViewBinding
 import com.a7medkenawy.elmarket.databinding.ProductDashboardCustomViewBinding
+import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.a7medkenawy.elmarket.models.Product
 import com.a7medkenawy.elmarket.ui.activities.ProductDetailsActivity
 import com.a7medkenawy.elmarket.ui.fragments.ProductsFragment
@@ -39,12 +40,15 @@ class ProductAdapter(
             productTitle.text = productItem.title
             productPrice.text = "${productItem.price}$"
 
+
             productDelete.setOnClickListener {
                 fragment.setAlertDialog(productItem.product_id)
             }
+
             holder.binding.root.setOnClickListener {
                 val intent = Intent(context, ProductDetailsActivity::class.java)
                 intent.putExtra(Constants.PRODUCT_ID, productItem.product_id)
+                intent.putExtra(Constants.USER_ID, productItem.user_id)
                 context.startActivity(intent)
             }
         }

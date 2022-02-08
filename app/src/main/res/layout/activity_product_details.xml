@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:background="@color/ImageColorGray"
-                android:scaleType="centerCrop" />
+                android:scaleType="fitXY" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -124,18 +124,30 @@
             </LinearLayout>
 
             <com.a7medkenawy.elmarket.utils.customviews.CustomButton
-                android:id="@+id/login_btn_login"
+                android:id="@+id/product_details_add_to_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:background="@drawable/button_background"
                 android:padding="@dimen/_12sdp"
+                android:gravity="center"
                 android:text="@string/add_to_cart"
                 android:textColor="@color/white"
-                android:paddingEnd="@dimen/_10sdp"
-                android:drawableRight="@drawable/ic_vector_add_to_cart"
+                android:textSize="@dimen/_15ssp" />
+
+            <com.a7medkenawy.elmarket.utils.customviews.CustomButton
+                android:id="@+id/product_details_go_to_cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@drawable/button_background"
+                android:padding="@dimen/_12sdp"
+                android:gravity="center"
+                android:text="@string/go_to_cart"
+                android:visibility="gone"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_15ssp" />
         </LinearLayout>
     </ScrollView>
