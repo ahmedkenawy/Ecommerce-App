@@ -2,7 +2,9 @@ package com.a7medkenawy.elmarket.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityAddProductBinding.inflate
@@ -32,6 +34,23 @@ class CartAdapter(val context: Context, val list: ArrayList<Cart>) :
             tvCartItemTitle.text = cartItem.title
             tvCartItemPrice.text = cartItem.price
             tvCartQuantity.text = cartItem.cart_quantity
+
+//            if (cartItem.cart_quantity == "0") {
+//                ibAddCartItem.visibility = View.GONE
+//                ibRemoveCartItem.visibility = View.GONE
+//
+//                tvCartQuantity.text = context.resources.getString(R.string.out_of_stock)
+//                tvCartQuantity.setTextColor(ContextCompat.getColor(context,R.color.colorSnackBarError))
+//
+//            } else {
+//                ibAddCartItem.visibility = View.VISIBLE
+//                ibRemoveCartItem.visibility = View.VISIBLE
+//                tvCartQuantity.text = cartItem.cart_quantity
+//                tvCartQuantity.setTextColor(ContextCompat.getColor(context,R.color.black))
+//            }
+
+
+
         }
 
     }

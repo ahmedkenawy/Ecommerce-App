@@ -286,7 +286,7 @@ class FireStoreClass {
                 val cartItems = ArrayList<Cart>()
                 for (i in it.documents) {
                     val product = i.toObject(Cart::class.java)
-                    product?.id=i.id
+                    product?.id = i.id
                     cartItems.add(product!!)
                 }
 
@@ -298,5 +298,23 @@ class FireStoreClass {
 
             }
             .addOnFailureListener { }
+    }
+
+
+    fun getAllProducts(activity: CartListActivity) {
+        fireStore.collection(Constants.PRODUCT)
+            .get()
+            .addOnSuccessListener { document ->
+                val products: ArrayList<Product> = ArrayList()
+                for (p in document.documents) {
+                    val product = p.toObject(Product::class.java)
+                    products.add(product!!)
+                }
+                activity.getAllProduct(products)
+
+            }
+            .addOnFailureListener {
+
+            }
     }
 }
