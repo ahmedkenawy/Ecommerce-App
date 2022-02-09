@@ -308,6 +308,7 @@ class FireStoreClass {
                 val products: ArrayList<Product> = ArrayList()
                 for (p in document.documents) {
                     val product = p.toObject(Product::class.java)
+                    product!!.product_id=p.id
                     products.add(product!!)
                 }
                 activity.getAllProduct(products)

@@ -32,22 +32,22 @@ class CartAdapter(val context: Context, val list: ArrayList<Cart>) :
         with(holder.binding) {
             Glide.with(context).load(cartItem.image).into(ivCartItemImage)
             tvCartItemTitle.text = cartItem.title
-            tvCartItemPrice.text = cartItem.price
+            tvCartItemPrice.text = "${cartItem.price}$"
             tvCartQuantity.text = cartItem.cart_quantity
 
-//            if (cartItem.cart_quantity == "0") {
-//                ibAddCartItem.visibility = View.GONE
-//                ibRemoveCartItem.visibility = View.GONE
-//
-//                tvCartQuantity.text = context.resources.getString(R.string.out_of_stock)
-//                tvCartQuantity.setTextColor(ContextCompat.getColor(context,R.color.colorSnackBarError))
-//
-//            } else {
-//                ibAddCartItem.visibility = View.VISIBLE
-//                ibRemoveCartItem.visibility = View.VISIBLE
-//                tvCartQuantity.text = cartItem.cart_quantity
-//                tvCartQuantity.setTextColor(ContextCompat.getColor(context,R.color.black))
-//            }
+            if (cartItem.cart_quantity == "0") {
+                ibAddCartItem.visibility = View.GONE
+                ibRemoveCartItem.visibility = View.GONE
+
+                tvCartQuantity.text = context.resources.getString(R.string.out_of_stock)
+                tvCartQuantity.setTextColor(ContextCompat.getColor(context,R.color.colorSnackBarError))
+
+            } else {
+                ibAddCartItem.visibility = View.VISIBLE
+                ibRemoveCartItem.visibility = View.VISIBLE
+                tvCartQuantity.text = cartItem.cart_quantity
+                tvCartQuantity.setTextColor(ContextCompat.getColor(context,R.color.black))
+            }
 
 
 

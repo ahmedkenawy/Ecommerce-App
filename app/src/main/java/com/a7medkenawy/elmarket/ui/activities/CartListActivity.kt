@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityCartListBinding
 import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.a7medkenawy.elmarket.models.Cart
@@ -20,6 +21,12 @@ class CartListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCartListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setActionBar()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         getProductsFromDatabase()
     }
 
@@ -40,9 +47,7 @@ class CartListActivity : AppCompatActivity() {
         }
 
         mCartListItems = carts
-        for(i in mCartListItems){
-            Log.d("YALLLLLAhoy", i.stock_quantity)
-        }
+
 
         if (mCartListItems.size > 0) {
             binding.llCheckout.visibility = View.VISIBLE
@@ -82,5 +87,17 @@ class CartListActivity : AppCompatActivity() {
 
     private fun getProductsInCartsFromDatabase() {
         FireStoreClass().getProductsInCart(this)
+    }
+
+    private fun setActionBar() {
+        setSupportActionBar(binding.toolbarCartListActivity)
+        supportActionBar?.title=""
+
+        val actionBar = actionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_vector_back)
+        }
+        binding.toolbarCartListActivity.setNavigationOnClickListener { onBackPressed() }
     }
 }
