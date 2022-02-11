@@ -10,10 +10,13 @@ import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityAddProductBinding.inflate
 import com.a7medkenawy.elmarket.databinding.ActivityCartListBinding.inflate
 import com.a7medkenawy.elmarket.databinding.ItemCartLayoutBinding
+import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.a7medkenawy.elmarket.models.Cart
+import com.a7medkenawy.elmarket.ui.activities.CartListActivity
+import com.a7medkenawy.elmarket.utils.Constants
 import com.bumptech.glide.Glide
 
-class CartAdapter(val context: Context, val list: ArrayList<Cart>) :
+class CartAdapter(val context: CartListActivity, val list: ArrayList<Cart>) :
     RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
 
@@ -40,23 +43,70 @@ class CartAdapter(val context: Context, val list: ArrayList<Cart>) :
                 ibRemoveCartItem.visibility = View.GONE
 
                 tvCartQuantity.text = context.resources.getString(R.string.out_of_stock)
-                tvCartQuantity.setTextColor(ContextCompat.getColor(context,R.color.colorSnackBarError))
+                tvCartQuantity.setTextColor(
+                    ContextCompat.getColor(
+                        context,
+                        R.color.colorSnackBarError
+                    )
+                )
 
             } else {
                 ibAddCartItem.visibility = View.VISIBLE
                 ibRemoveCartItem.visibility = View.VISIBLE
                 tvCartQuantity.text = cartItem.cart_quantity
-                tvCartQuantity.setTextColor(ContextCompat.getColor(context,R.color.black))
+                tvCartQuantity.setTextColor(ContextCompat.getColor(context, R.color.black))
             }
 
 
+            ibDeleteCartItem.setOnClickListener {
+                when (context) {
+                    is CartListActivity -> {
+                        context.setAlertDialog(cartItem.id)
+                    }
 
+                }
+            }
+
+
+            var stockQuantity = cartItem.stock_quantity.toInt()
+            var cartQuantity = cartItem.cart_quantity.toInt()
+            var quantityHashtable = HashMap<String, Any>()
+            val basePrice=cartItem.price
+            ibAddCartItem.setOnClickListener {
+                cartQuantity++
+                if (cartQuantity >= stockQuantity) {
+                    tvCartQuantity.text = stockQuantity.toString()
+                    quantityHashtable[Constants.CART_Quantity] = tvCartQuantity.text.toString()
+                    FireStoreClass().updateCartQuantity(context, cartItem.id, quantityHashtable)
+                } else {
+                    tvCartQuantity.text = cartQuantity.toString()
+                    quantityHashtable[Constants.CART_Quantity] = tvCartQuantity.text.toString()
+                    FireStoreClass().updateCartQuantity(context, cartItem.id, quantityHashtable)
+                }
+            }
+
+            ibRemoveCartItem.setOnClickListener {
+                cartQuantity--
+                if (cartQuantity <= 0) {
+                    tvCartQuantity.text = "1"
+                    quantityHashtable[Constants.CART_Quantity] = tvCartQuantity.text.toString()
+                    FireStoreClass().updateCartQuantity(context, cartItem.id, quantityHashtable)
+                } else {
+                    tvCartQuantity.text = cartQuantity.toString()
+                    quantityHashtable[Constants.CART_Quantity] = tvCartQuantity.text.toString()
+                    FireStoreClass().updateCartQuantity(context, cartItem.id, quantityHashtable)
+                }
+            }
         }
 
     }
 
     override fun getItemCount() = list.size
 
+    fun updatePrice(quantity: Int, price: Double): String {
+        var newPrice = quantity * price
+        return newPrice.toString()
+    }
 
     class CartViewHolder(val binding: ItemCartLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 

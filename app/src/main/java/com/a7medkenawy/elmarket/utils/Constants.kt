@@ -19,6 +19,7 @@ object Constants {
     const val SP_Profile_Image = "userProfileImage"
     const val TAG = "tag"
 
+
     const val USER_ID="user_id"
     const val PRODUCT_ID="product_id"
 
@@ -28,6 +29,9 @@ object Constants {
 
 
     const val CART_QUANTITY: String = "1"
+    const val CART_Quantity: String = "cart_quantity"
+    const val CART_Price: String = "price"
+    const val CART_Base_Price: String = "base_price"
 
 
     fun getImageExtension(activity: Activity, ImageUri: Uri): String {

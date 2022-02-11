@@ -4,10 +4,12 @@ import android.app.Dialog
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityAddProductBinding
+import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.google.android.material.snackbar.Snackbar
 
 open class BaseActivity : AppCompatActivity() {
@@ -36,7 +38,7 @@ open class BaseActivity : AppCompatActivity() {
         snackBar.show()
     }
 
-    fun showCustomToast(){
+    fun showCustomToast() {
         val inflater = layoutInflater
         val layout: View =
             inflater.inflate(R.layout.customtoast, findViewById(R.id.toast_layout_root))
@@ -63,4 +65,7 @@ open class BaseActivity : AppCompatActivity() {
     fun hideProgressDialog() {
         mProgressDialog.dismiss()
     }
+
+
+
 }

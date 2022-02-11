@@ -1,8 +1,10 @@
 package com.a7medkenawy.elmarket.ui.activities
 
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityProductDetailsBinding
 import com.a7medkenawy.elmarket.firestore.FireStoreClass
@@ -66,6 +68,14 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         binding.productDetailsDescription.text = product.description
         binding.productDetailsStockQuantity.text = product.stock_quantity
 
+        if (binding.productDetailsStockQuantity.text == "0") {
+            binding.productDetailsAddToCart.setBackgroundResource(R.drawable.signin_background)
+            binding.productDetailsAddToCart.setTextColor(ContextCompat.getColor(this,R.color.black))
+            binding.productDetailsAddToCart.text = resources.getString(R.string.out_of_stock)
+            binding.productDetailsGoToCart.visibility=View.GONE
+        }
+
+
     }
 
     fun setToolBar() {
@@ -106,8 +116,8 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         binding.productDetailsGoToCart.visibility = View.VISIBLE
     }
 
-    private fun checkIfProductExist(){
-        FireStoreClass().checkIfProductExist(this,productId!!)
+    private fun checkIfProductExist() {
+        FireStoreClass().checkIfProductExist(this, productId!!)
     }
 
 

@@ -308,7 +308,7 @@ class FireStoreClass {
                 val products: ArrayList<Product> = ArrayList()
                 for (p in document.documents) {
                     val product = p.toObject(Product::class.java)
-                    product!!.product_id=p.id
+                    product!!.product_id = p.id
                     products.add(product!!)
                 }
                 activity.getAllProduct(products)
@@ -317,5 +317,30 @@ class FireStoreClass {
             .addOnFailureListener {
 
             }
+    }
+
+
+    fun deleteItemFromCart(context: Context, cartId: String) {
+        fireStore.collection(Constants.CART_ITEMS)
+            .document(cartId)
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(context, "product deleted successfully", Toast.LENGTH_LONG).show()
+
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "failed in deleting", Toast.LENGTH_LONG).show()
+            }
+    }
+
+
+    fun updateCartQuantity(activity: CartListActivity,cartId: String, cartHashMap: HashMap<String, Any>) {
+        fireStore.collection(Constants.CART_ITEMS)
+            .document(cartId)
+            .update(cartHashMap)
+            .addOnSuccessListener {
+                activity.getProductsInCartsFromDatabase()
+            }
+            .addOnFailureListener { }
     }
 }
