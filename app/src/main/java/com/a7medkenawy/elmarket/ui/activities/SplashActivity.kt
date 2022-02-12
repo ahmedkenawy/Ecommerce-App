@@ -7,40 +7,30 @@ import android.view.View
 import android.content.Intent
 import android.os.Handler
 import com.a7medkenawy.elmarket.R
+import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.google.firebase.auth.FirebaseAuth
 
 
 class SplashActivity : AppCompatActivity() {
 
-    override fun onStart() {
-        super.onStart()
-        if (FirebaseAuth.getInstance().currentUser != null) {
-            startActivity(Intent(this, DashBoardActivity::class.java))
-            finish()
-        }
-    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        setFullScreen()
-        setSplashTime()
-
+        Handler().postDelayed(
+            {
+                val currentUserID = FireStoreClass().getCurrentUser()
+                if (currentUserID.isNotEmpty()) {
+                    startActivity(Intent(this@SplashActivity, DashBoardActivity::class.java))
+                } else {
+                    startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                }
+                finish()
+            },
+            2500
+        )
     }
 
-    private fun setFullScreen() {
-        @Suppress("DEPRECATION")
-        window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
-        window.statusBarColor = Color.TRANSPARENT
     }
-
-    fun setSplashTime() {
-        @Suppress("DEPRECATION")
-        Handler().postDelayed({
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }, 3000)
-    }
-}
