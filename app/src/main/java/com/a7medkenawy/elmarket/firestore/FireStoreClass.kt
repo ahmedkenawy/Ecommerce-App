@@ -362,4 +362,24 @@ class FireStoreClass {
                 activity.hideProgressDialog()
             }
     }
+
+    fun getAllAddressesFromDatabase(activity: AddressActivity) {
+        fireStore.collection(Constants.Addresses)
+            .whereEqualTo(Constants.USER_ID, FireStoreClass().getCurrentUser())
+            .get()
+            .addOnSuccessListener {
+                val addressesList: ArrayList<Address> = ArrayList()
+                for (address in it.documents) {
+                    val address1 = address.toObject(Address::class.java)
+                    address1?.id = address.id
+                    addressesList.add(address1!!)
+                }
+                activity.displayAddressesInRecyclerView(addressesList)
+
+            }
+
+            .addOnFailureListener {
+
+            }
+    }
 }

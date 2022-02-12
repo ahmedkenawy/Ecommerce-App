@@ -137,7 +137,7 @@
 
         <RadioGroup
             android:id="@+id/address_radio_button"
-            android:layout_width="@dimen/_250sdp"
+            android:layout_width="@dimen/_260sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:checkedButton="@+id/address_rb_home"

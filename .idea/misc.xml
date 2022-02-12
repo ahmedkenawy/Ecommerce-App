@@ -24,7 +24,7 @@
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_add_product.xml" value="0.15" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_cart_list.xml" value="0.22" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_dash_board.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_edit_address.xml" value="0.5" />
+        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_edit_address.xml" value="0.22" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_forgot_password.xml" value="0.18" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_main.xml" value="0.22083333333333333" />
@@ -33,6 +33,7 @@
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_settings.xml" value="0.2" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_splash.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/activity_user_profile.xml" value="0.2" />
+        <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/address_custom_view.xml" value="0.22" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/customtoast.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/dialog_progress.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/a7med/AndroidStudioProjects/ElMarket/app/src/main/res/layout/fragment_base.xml" value="0.22083333333333333" />
