@@ -123,4 +123,16 @@
     <string name="lbl_total_amount">Total amount</string>
     <string name="btn_lbl_checkout">Checkout</string>
     <string name="out_of_stock">out of stock</string>
+    <string name="add_address">Add Address</string>
+    <string name="my_addresses">My Addresses</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="address">Address</string>
+    <string name="zipcode">zipCode</string>
+    <string name="additional_note">Additional Note</string>
+    <string name="home">Home</string>
+    <string name="office">Office</string>
+    <string name="other">Other</string>
+    <string name="other_note">Other Note</string>
+    <string name="save_address">Save Address</string>
 </resources>

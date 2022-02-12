@@ -121,8 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal"
-            android:checkedButton="@+id/rb_male"
-            >
+            android:checkedButton="@+id/rb_male">
 
             <com.a7medkenawy.elmarket.utils.customviews.CustomRadioButton
                 android:id="@+id/rb_male"

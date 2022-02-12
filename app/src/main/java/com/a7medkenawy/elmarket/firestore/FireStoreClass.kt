@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.a7medkenawy.elmarket.models.Address
 import com.a7medkenawy.elmarket.models.Cart
 import com.a7medkenawy.elmarket.models.Product
 import com.a7medkenawy.elmarket.models.User
@@ -15,6 +16,7 @@ import com.a7medkenawy.elmarket.ui.fragments.ProductsFragment
 import com.a7medkenawy.elmarket.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 
 class FireStoreClass {
@@ -334,7 +336,11 @@ class FireStoreClass {
     }
 
 
-    fun updateCartQuantity(activity: CartListActivity,cartId: String, cartHashMap: HashMap<String, Any>) {
+    fun updateCartQuantity(
+        activity: CartListActivity,
+        cartId: String,
+        cartHashMap: HashMap<String, Any>
+    ) {
         fireStore.collection(Constants.CART_ITEMS)
             .document(cartId)
             .update(cartHashMap)
@@ -342,5 +348,18 @@ class FireStoreClass {
                 activity.getProductsInCartsFromDatabase()
             }
             .addOnFailureListener { }
+    }
+
+    fun addAddressToDatabase(activity: EditAddressActivity, address: Address) {
+        fireStore.collection(Constants.Addresses)
+            .document()
+            .set(address, SetOptions.merge())
+            .addOnSuccessListener {
+                activity.hideProgressDialog()
+                activity.backToAddressActivity()
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+            }
     }
 }

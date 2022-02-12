@@ -25,7 +25,7 @@ class SettingsActivity : AppCompatActivity() , View.OnClickListener {
 
         binding.btnLogout.setOnClickListener(this)
         binding.tvEdit.setOnClickListener(this)
-
+        binding.llAddress.setOnClickListener(this)
     }
 
     fun insertDataInViews(user: User) {
@@ -50,6 +50,10 @@ class SettingsActivity : AppCompatActivity() , View.OnClickListener {
             R.id.tv_edit->{
                 val intent = Intent(this, UserProfileActivity::class.java)
                 intent.putExtra(Constants.USER_DETAILS, mUserDetails)
+                startActivity(intent)
+            }
+            R.id.ll_address->{
+                val intent = Intent(this, AddressActivity::class.java)
                 startActivity(intent)
             }
         }
