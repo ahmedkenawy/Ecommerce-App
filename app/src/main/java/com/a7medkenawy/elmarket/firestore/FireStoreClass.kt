@@ -382,4 +382,33 @@ class FireStoreClass {
 
             }
     }
+
+
+    fun updateAddress(activity: EditAddressActivity, address: Address, addressId: String) {
+        fireStore.collection(Constants.Addresses)
+            .document(addressId)
+            .set(address, SetOptions.merge())
+            .addOnSuccessListener {
+                activity.hideProgressDialog()
+                activity.backToAddressActivity()
+
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+            }
+
+    }
+
+    fun deleteAddress(activity: AddressActivity, addressId: String) {
+        fireStore.collection(Constants.Addresses)
+            .document(addressId)
+            .delete()
+            .addOnSuccessListener {
+                activity.hideProgressDialog()
+                getAllAddressesFromDatabase(activity)
+            }
+            .addOnFailureListener { activity.hideProgressDialog() }
+    }
+
+
 }

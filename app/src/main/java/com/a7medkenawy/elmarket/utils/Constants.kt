@@ -35,6 +35,9 @@ object Constants {
     const val CART_Base_Price: String = "base_price"
 
 
+    const val AddressDetails="addressDetails"
+
+
     fun getImageExtension(activity: Activity, ImageUri: Uri): String {
         return MimeTypeMap.getSingleton()
             .getExtensionFromMimeType(activity.contentResolver.getType(ImageUri))!!

@@ -4,14 +4,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityAddAddressBinding
 import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.a7medkenawy.elmarket.models.Address
 import com.a7medkenawy.elmarket.ui.adapter.AddressAdapter
+import com.a7medkenawy.elmarket.utils.swipe.SwipeToDeleteCallback
+import com.a7medkenawy.elmarket.utils.swipe.SwipeToEditCallback
 
-class AddressActivity : AppCompatActivity(), View.OnClickListener {
+class AddressActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityAddAddressBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +40,43 @@ class AddressActivity : AppCompatActivity(), View.OnClickListener {
             binding.addAddressRv.layoutManager = LinearLayoutManager(this)
             binding.addAddressRv.adapter = addressesAdapter
 
+            swipeToEdit()
+            swipeToDelete(addressesList)
+
         } else {
             binding.addAddressRv.visibility = View.GONE
             binding.addAddressNoAddressFoundLottie.visibility = View.VISIBLE
             binding.addAddressNoAddressFoundTv.visibility = View.VISIBLE
         }
+    }
+
+    private fun swipeToEdit() {
+        val swipeEdit = object : SwipeToEditCallback(this) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val swipeAdapter = binding.addAddressRv.adapter as AddressAdapter
+                swipeAdapter.notifyEditItem(this@AddressActivity, viewHolder.adapterPosition)
+            }
+
+        }
+
+        val swipeEditTouchHelper = ItemTouchHelper(swipeEdit)
+        swipeEditTouchHelper.attachToRecyclerView(binding.addAddressRv)
+    }
+
+    private fun swipeToDelete(addressesList: ArrayList<Address>) {
+        val swipeDelete = object : SwipeToDeleteCallback(this) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                showProgressDialog()
+                FireStoreClass().deleteAddress(
+                    this@AddressActivity,
+                    addressesList[viewHolder.adapterPosition].id
+                )
+            }
+
+        }
+
+        val swipeDeleteTouchHelper = ItemTouchHelper(swipeDelete)
+        swipeDeleteTouchHelper.attachToRecyclerView(binding.addAddressRv)
     }
 
     private fun setupActionBar() {

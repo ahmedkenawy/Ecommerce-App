@@ -9,10 +9,13 @@ import com.a7medkenawy.elmarket.R
 import com.a7medkenawy.elmarket.databinding.ActivityEditAddressBinding
 import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.a7medkenawy.elmarket.models.Address
+import com.a7medkenawy.elmarket.utils.Constants
 
 class EditAddressActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityEditAddressBinding
+    private var mAddress: Address? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditAddressBinding.inflate(layoutInflater)
@@ -20,6 +23,36 @@ class EditAddressActivity : BaseActivity(), View.OnClickListener {
         setupActionBar()
 
         binding.addressSaveAddressButton.setOnClickListener(this)
+
+        if (intent.hasExtra(Constants.AddressDetails)) {
+            mAddress = intent.getParcelableExtra(Constants.AddressDetails)
+            if (mAddress!!.id.isNotEmpty()) {
+                binding.addressAddAddressTv.text = resources.getString(R.string.update_address)
+                binding.addressSaveAddressButton.text = resources.getString(R.string.update_address)
+
+                binding.addressFullNameEt.setText(mAddress!!.name)
+                binding.addressPhoneNumberEt.setText(mAddress!!.mobileNumber)
+                binding.addressAddressEt.setText(mAddress!!.address)
+                binding.addressZipCodeEt.setText(mAddress!!.zipCode)
+                binding.addressAdditionalNoteEt.setText(mAddress!!.additionalNote)
+
+                when (mAddress!!.type) {
+                    "Home" -> {
+                        binding.addressRbHome.isChecked = true
+                    }
+                    "Office" -> {
+                        binding.addressRbOffice.isChecked = true
+                    }
+                    "Other" -> {
+                        binding.addressRbOther.isChecked = true
+                        binding.addressOtherNote.visibility = View.VISIBLE
+                        binding.addressOtherNoteEt.setText(mAddress!!.otherDetails)
+                    }
+                }
+            }
+        }
+
+
 
         binding.addressRadioButton.setOnCheckedChangeListener { _, checkedId ->
             if (checkedId == R.id.address_rb_other) {
@@ -34,7 +67,7 @@ class EditAddressActivity : BaseActivity(), View.OnClickListener {
 
         setSupportActionBar(binding.addressToolbar)
         val actionBar = supportActionBar
-        actionBar?.title=""
+        actionBar?.title = ""
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic__back)
@@ -70,11 +103,17 @@ class EditAddressActivity : BaseActivity(), View.OnClickListener {
                 otherDetails = binding.addressOtherNoteEt.text.toString().trim(),
                 id = ""
             )
-
-            FireStoreClass().addAddressToDatabase(this, address)
+            if (mAddress != null && mAddress!!.id.isNotEmpty()) {
+                showProgressDialog()
+                FireStoreClass().updateAddress(this,address,mAddress!!.id)
+            } else {
+                FireStoreClass().addAddressToDatabase(this, address)
+            }
         }
 
     }
+
+
 
     fun backToAddressActivity() {
         val intent = Intent(this, AddressActivity::class.java)
