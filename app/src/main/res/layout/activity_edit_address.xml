@@ -35,183 +35,183 @@
             android:orientation="vertical">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/address_fullName"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:backgroundTint="@null"
-            android:hint="@string/full_name"
-            app:boxStrokeColor="@color/bradColor">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/address_fullName_et"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address_fullName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat" />
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:backgroundTint="@null"
+                android:hint="@string/full_name"
+                app:boxStrokeColor="@color/bradColor">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address_fullName_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/address_phoneNumber"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:backgroundTint="@null"
-            android:hint="@string/phone_number"
-            app:boxStrokeColor="@color/bradColor">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/address_phoneNumber_et"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address_phoneNumber"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:backgroundTint="@null"
+                android:hint="@string/phone_number"
+                app:boxStrokeColor="@color/bradColor">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address_phoneNumber_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/address_Address"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:backgroundTint="@null"
-            android:hint="@string/address"
-            app:boxStrokeColor="@color/bradColor">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/address_Address_et"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address_Address"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat"
-                android:padding="@dimen/_25sdp" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:backgroundTint="@null"
+                android:hint="@string/address"
+                app:boxStrokeColor="@color/bradColor">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address_Address_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:padding="@dimen/_25sdp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/address_zipCode"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:backgroundTint="@null"
-            android:hint="@string/zipcode"
-            app:boxStrokeColor="@color/bradColor">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/address_zipCode_et"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address_zipCode"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:backgroundTint="@null"
+                android:hint="@string/zipcode"
+                app:boxStrokeColor="@color/bradColor">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address_zipCode_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/address_additionalNote"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:backgroundTint="@null"
-            android:hint="@string/additional_note"
-            app:boxStrokeColor="@color/bradColor">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/address_additionalNote_et"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address_additionalNote"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="@dimen/_250sdp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:backgroundTint="@null"
+                android:hint="@string/additional_note"
+                app:boxStrokeColor="@color/bradColor">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address_additionalNote_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat" />
 
-        <RadioGroup
-            android:id="@+id/address_radio_button"
-            android:layout_width="@dimen/_260sdp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:checkedButton="@+id/address_rb_home"
-            android:orientation="horizontal">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.a7medkenawy.elmarket.utils.customviews.CustomRadioButton
-                android:id="@+id/address_rb_home"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_35sdp"
+            <RadioGroup
+                android:id="@+id/address_radio_button"
+                android:layout_width="@dimen/_260sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:checkedButton="@+id/address_rb_home"
+                android:orientation="horizontal">
+
+                <com.a7medkenawy.elmarket.utils.customviews.CustomRadioButton
+                    android:id="@+id/address_rb_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button_background"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/home" />
+
+                <com.a7medkenawy.elmarket.utils.customviews.CustomRadioButton
+                    android:id="@+id/address_rb_office"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button_background"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/office" />
+
+                <com.a7medkenawy.elmarket.utils.customviews.CustomRadioButton
+                    android:id="@+id/address_rb_other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button_background"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/other" />
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address_otherNote"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="@dimen/_250sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:backgroundTint="@null"
+                android:hint="@string/other_note"
+                android:visibility="gone"
+                app:boxStrokeColor="@color/bradColor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address_otherNote_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/address_saveAddress_button"
+                android:layout_width="@dimen/_260sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_margin="@dimen/_5sdp"
-                android:layout_weight="1"
-                android:background="@drawable/radio_button_background"
-                android:button="@null"
-                android:gravity="center"
-                android:text="@string/home" />
-
-            <com.a7medkenawy.elmarket.utils.customviews.CustomRadioButton
-                android:id="@+id/address_rb_office"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:layout_weight="1"
-                android:background="@drawable/radio_button_background"
-                android:button="@null"
-                android:gravity="center"
-                android:text="@string/office" />
-
-            <com.a7medkenawy.elmarket.utils.customviews.CustomRadioButton
-                android:id="@+id/address_rb_other"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:layout_weight="1"
-                android:background="@drawable/radio_button_background"
-                android:button="@null"
-                android:gravity="center"
-                android:text="@string/other" />
-        </RadioGroup>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/address_otherNote"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:backgroundTint="@null"
-            android:hint="@string/other_note"
-            android:visibility="gone"
-            app:boxStrokeColor="@color/bradColor">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/address_otherNote_et"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/address_saveAddress_button"
-            android:layout_width="@dimen/_260sdp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/_5sdp"
-            android:background="@drawable/signin_background"
-            android:backgroundTint="@null"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/save_address"
-            android:textAllCaps="false"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_address_toolbar" />
+                android:background="@drawable/signin_background"
+                android:backgroundTint="@null"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/save_address"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_address_toolbar" />
         </LinearLayout>
 
     </ScrollView>
