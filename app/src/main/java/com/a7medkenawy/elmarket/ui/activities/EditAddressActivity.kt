@@ -116,6 +116,7 @@ class EditAddressActivity : BaseActivity(), View.OnClickListener {
 
 
     fun backToAddressActivity() {
+        setResult(RESULT_OK)
         val intent = Intent(this, AddressActivity::class.java)
         startActivity(intent)
         finish()

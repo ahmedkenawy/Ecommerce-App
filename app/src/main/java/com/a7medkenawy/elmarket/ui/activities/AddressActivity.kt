@@ -12,10 +12,13 @@ import com.a7medkenawy.elmarket.databinding.ActivityAddAddressBinding
 import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.a7medkenawy.elmarket.models.Address
 import com.a7medkenawy.elmarket.ui.adapter.AddressAdapter
+import com.a7medkenawy.elmarket.utils.Constants
 import com.a7medkenawy.elmarket.utils.swipe.SwipeToDeleteCallback
 import com.a7medkenawy.elmarket.utils.swipe.SwipeToEditCallback
 
 class AddressActivity : BaseActivity(), View.OnClickListener {
+
+    private var mAddress: Boolean = false
 
     private lateinit var binding: ActivityAddAddressBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,8 +26,15 @@ class AddressActivity : BaseActivity(), View.OnClickListener {
         binding = ActivityAddAddressBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupActionBar()
-
         binding.addAddressButton.setOnClickListener(this)
+
+        if (intent.hasExtra(Constants.SELECT_ADDRESS)) {
+            mAddress = intent.getBooleanExtra(Constants.SELECT_ADDRESS, false)
+        }
+
+        if (mAddress) {
+            binding.toolbarTv.text = resources.getString(R.string.select_address)
+        }
 
         FireStoreClass().getAllAddressesFromDatabase(this)
 
@@ -36,12 +46,14 @@ class AddressActivity : BaseActivity(), View.OnClickListener {
             binding.addAddressNoAddressFoundLottie.visibility = View.GONE
             binding.addAddressNoAddressFoundTv.visibility = View.GONE
 
-            val addressesAdapter = AddressAdapter(this, addressesList)
+            val addressesAdapter = AddressAdapter(this, addressesList,mAddress  )
             binding.addAddressRv.layoutManager = LinearLayoutManager(this)
             binding.addAddressRv.adapter = addressesAdapter
 
-            swipeToEdit()
-            swipeToDelete(addressesList)
+            if (!mAddress) {
+                swipeToEdit()
+                swipeToDelete(addressesList)
+            }
 
         } else {
             binding.addAddressRv.visibility = View.GONE
@@ -93,11 +105,18 @@ class AddressActivity : BaseActivity(), View.OnClickListener {
         binding.addAddressToolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode== RESULT_OK){
+            FireStoreClass().getAllAddressesFromDatabase(this)
+        }
+    }
+
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.add_address_button -> {
                 val intent = Intent(this, EditAddressActivity::class.java)
-                startActivity(intent)
+                startActivityForResult(intent,Constants.SELECT_ADDRESS_REQUEST_CODE)
             }
         }
     }

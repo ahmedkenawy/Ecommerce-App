@@ -1,5 +1,6 @@
 package com.a7medkenawy.elmarket.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import com.a7medkenawy.elmarket.firestore.FireStoreClass
 import com.a7medkenawy.elmarket.models.Cart
 import com.a7medkenawy.elmarket.models.Product
 import com.a7medkenawy.elmarket.ui.adapter.CartAdapter
+import com.a7medkenawy.elmarket.utils.Constants
 
 class CartListActivity : BaseActivity() {
     private lateinit var mProductsList: ArrayList<Product>
@@ -23,6 +25,12 @@ class CartListActivity : BaseActivity() {
         binding = ActivityCartListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setToolBar()
+
+        binding.btnCheckout.setOnClickListener {
+            val intent = Intent(this, AddressActivity::class.java)
+            intent.putExtra(Constants.SELECT_ADDRESS, true)
+            startActivity(intent)
+        }
 
     }
 
@@ -79,7 +87,6 @@ class CartListActivity : BaseActivity() {
             binding.tvTotalAmount.text = total.toString()
 
 
-
         } else {
             binding.llCheckout.visibility = View.GONE
             binding.rvCartItemsList.visibility = View.GONE
@@ -96,7 +103,7 @@ class CartListActivity : BaseActivity() {
         mProductsList = products
     }
 
-     fun getProductsInCartsFromDatabase() {
+    fun getProductsInCartsFromDatabase() {
         FireStoreClass().getProductsInCart(this)
     }
 
@@ -123,7 +130,7 @@ class CartListActivity : BaseActivity() {
         builder.setPositiveButton(
             "Yes"
         ) { dialog, id ->
-            FireStoreClass().deleteItemFromCart(baseContext,productID)
+            FireStoreClass().deleteItemFromCart(baseContext, productID)
             getProductsInCartsFromDatabase()
         }
 

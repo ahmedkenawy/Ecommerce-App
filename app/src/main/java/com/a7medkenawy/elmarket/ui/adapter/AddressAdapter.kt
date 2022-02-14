@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.a7medkenawy.elmarket.databinding.AddressCustomViewBinding
 import com.a7medkenawy.elmarket.models.Address
@@ -11,7 +12,11 @@ import com.a7medkenawy.elmarket.ui.activities.AddressActivity
 import com.a7medkenawy.elmarket.ui.activities.EditAddressActivity
 import com.a7medkenawy.elmarket.utils.Constants
 
-class AddressAdapter(val context: Context, val addressList: ArrayList<Address>) :
+class AddressAdapter(
+    val context: Context,
+    val addressList: ArrayList<Address>,
+    var mSelectAddress: Boolean
+) :
     RecyclerView.Adapter<AddressAdapter.AddressViewHolder>() {
 
 
@@ -33,6 +38,12 @@ class AddressAdapter(val context: Context, val addressList: ArrayList<Address>) 
             viewAddressType.text = itemAddress.type
             viewAddressAddress.text = itemAddress.address
             viewAddressPhoneNumber.text = itemAddress.mobileNumber
+
+            if (mSelectAddress) {
+                root.setOnClickListener {
+                    Toast.makeText(context, itemAddress.name, Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 
@@ -42,7 +53,7 @@ class AddressAdapter(val context: Context, val addressList: ArrayList<Address>) 
     fun notifyEditItem(activity: AddressActivity, position: Int) {
         val intent = Intent(context, EditAddressActivity::class.java)
         intent.putExtra(Constants.AddressDetails, addressList[position])
-        activity.startActivity(intent)
+        activity.startActivityForResult(intent, Constants.SELECT_ADDRESS_REQUEST_CODE)
     }
 
     class AddressViewHolder(val binding: AddressCustomViewBinding) :
