@@ -15,6 +15,9 @@ import com.a7medkenawy.elmarket.ui.activities.CartListActivity
 import com.a7medkenawy.elmarket.ui.activities.SettingsActivity
 import com.a7medkenawy.elmarket.ui.adapter.DashboardProductAdapter
 import com.a7medkenawy.elmarket.ui.adapter.ProductAdapter
+import com.denzcoskun.imageslider.ImageSlider
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 
 class HomeFragment : Fragment() {
 
@@ -32,6 +35,35 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        val imageList = java.util.ArrayList<SlideModel>()
+
+        imageList.add(
+            SlideModel(
+                R.drawable.one,
+                "The animal population decreased by 58 percent in 42 years.",
+                ScaleTypes.FIT
+            )
+        )
+        imageList.add(
+            SlideModel(
+                R.drawable.two,
+                "Elephants and tigers may become extinct.",
+                ScaleTypes.FIT
+            )
+        )
+        imageList.add(SlideModel(R.drawable.three, "And people do that.", ScaleTypes.FIT))
+        imageList.add(
+            SlideModel(
+                R.drawable.four,
+                "The animal population decreased by 58 percent in 42 years.",
+                ScaleTypes.FIT
+            )
+        )
+
+
+        binding.imageSlider.setImageList(imageList)
+        binding.imageSlider.startSliding(3000)
 
         FireStoreClass().getDashBoardProductsDetails(this)
         return root
