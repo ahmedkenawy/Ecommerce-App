@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.a7medkenawy.elmarket.databinding.AddressCustomViewBinding
 import com.a7medkenawy.elmarket.models.Address
+import com.a7medkenawy.elmarket.ui.activities.ActivityCheckout
 import com.a7medkenawy.elmarket.ui.activities.AddressActivity
 import com.a7medkenawy.elmarket.ui.activities.EditAddressActivity
 import com.a7medkenawy.elmarket.utils.Constants
@@ -41,7 +41,9 @@ class AddressAdapter(
 
             if (mSelectAddress) {
                 root.setOnClickListener {
-                    Toast.makeText(context, itemAddress.name, Toast.LENGTH_LONG).show()
+                    val intent = Intent(context, ActivityCheckout::class.java)
+                    intent.putExtra(Constants.EXTRA_SELECTED_ADDRESS, itemAddress)
+                    context.startActivity(intent)
                 }
             }
         }

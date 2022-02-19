@@ -15,5 +15,6 @@
     <color name="colorSnackBarError">#F61C2B</color>
     <color name="ImageColorGray">#B6B6B6</color>
     <color name="colorGray">#787676</color>
+    <color name="background_color">#F1F1F1</color>
 
 </resources>

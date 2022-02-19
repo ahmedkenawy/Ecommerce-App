@@ -13,6 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ElMarket">
         <activity
+            android:name=".ui.activities.ActivityCheckout"
+            android:exported="false"
+            android:theme="@style/SplashTheme"
+            />
+        <activity
+            android:name=".ui.activities.onboardingscreen.OnBoardingScreen"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.EditAddressActivity"
             android:exported="false"
             android:theme="@style/SplashTheme" />

@@ -8,8 +8,8 @@
     android:layout_marginTop="@dimen/_5sdp"
     android:orientation="vertical"
     android:background="@color/white"
-    android:layout_marginStart="@dimen/_2sdp"
-    android:layout_marginEnd="@dimen/_2sdp"
+    android:layout_marginStart="@dimen/_7sdp"
+    android:layout_marginEnd="@dimen/_7sdp"
     android:layout_marginBottom="@dimen/_3sdp"
     android:padding="@dimen/_5sdp">
 

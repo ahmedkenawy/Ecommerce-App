@@ -50,6 +50,19 @@ open class BaseActivity : AppCompatActivity() {
         toast.show()
     }
 
+
+    fun showDeliveryToast() {
+        val inflater = layoutInflater
+        val layout: View =
+            inflater.inflate(R.layout.delivery_toast, findViewById(R.id.toast_layout_root))
+
+        val toast = Toast(applicationContext)
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+        toast.duration = Toast.LENGTH_LONG
+        toast.view = layout
+        toast.show()
+    }
+
     fun showProgressDialog() {
         mProgressDialog = Dialog(this)
 

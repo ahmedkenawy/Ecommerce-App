@@ -6,10 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.a7medkenawy.elmarket.models.Address
-import com.a7medkenawy.elmarket.models.Cart
-import com.a7medkenawy.elmarket.models.Product
-import com.a7medkenawy.elmarket.models.User
+import com.a7medkenawy.elmarket.models.*
 import com.a7medkenawy.elmarket.ui.activities.*
 import com.a7medkenawy.elmarket.ui.fragments.HomeFragment
 import com.a7medkenawy.elmarket.ui.fragments.ProductsFragment
@@ -296,14 +293,26 @@ class FireStoreClass {
                     is CartListActivity -> {
                         activity.showCartList(cartItems)
                     }
+                    is ActivityCheckout -> {
+                        activity.getAllCartItemsSuccessfully(cartItems)
+                    }
                 }
 
             }
-            .addOnFailureListener { }
+            .addOnFailureListener {
+                when (activity) {
+                    is CartListActivity -> {
+
+                    }
+                    is ActivityCheckout -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+            }
     }
 
 
-    fun getAllProducts(activity: CartListActivity) {
+    fun getAllProducts(activity: Activity) {
         fireStore.collection(Constants.PRODUCT)
             .get()
             .addOnSuccessListener { document ->
@@ -313,11 +322,24 @@ class FireStoreClass {
                     product!!.product_id = p.id
                     products.add(product!!)
                 }
-                activity.getAllProduct(products)
+                when (activity) {
+                    is CartListActivity -> {
+                        activity.getAllProduct(products)
+                    }
+                    is ActivityCheckout -> {
+                        activity.getAllProductsSuccessfully(products)
+                    }
+                }
 
             }
             .addOnFailureListener {
-
+                when (activity) {
+                    is CartListActivity -> {
+                    }
+                    is ActivityCheckout -> {
+                        activity.hideProgressDialog()
+                    }
+                }
             }
     }
 
@@ -410,5 +432,20 @@ class FireStoreClass {
             .addOnFailureListener { activity.hideProgressDialog() }
     }
 
+
+    fun placeOrder(activity: ActivityCheckout, order: Order) {
+
+        fireStore.collection(Constants.ORDERS)
+            .document()
+            .set(order, SetOptions.merge())
+            .addOnSuccessListener {
+                activity.orderPlacedSuccess()
+                activity.showDeliveryToast()
+
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+            }
+    }
 
 }

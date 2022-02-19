@@ -6,12 +6,14 @@ import android.net.Uri
 import android.webkit.MimeTypeMap
 
 object Constants {
+
+
     //  Collections in Cloud FireStore
     const val USERS = "users"
     const val PRODUCT = "products"
     const val CART_ITEMS = "cart_items"
     const val Addresses = "addresses"
-
+    const val ORDERS: String="orders"
 
     const val SharedPreferencesName = "UserSharedPreferences"
     const val userName = "username"
@@ -36,6 +38,8 @@ object Constants {
     const val AddressDetails: String = "addressDetails"
     const val SELECT_ADDRESS: String = "select_address"
     const val SELECT_ADDRESS_REQUEST_CODE: Int = 55
+
+    const val EXTRA_SELECTED_ADDRESS: String = "extra_selected_address"
 
 
     fun getImageExtension(activity: Activity, ImageUri: Uri): String {

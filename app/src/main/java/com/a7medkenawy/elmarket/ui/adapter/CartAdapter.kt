@@ -1,5 +1,6 @@
 package com.a7medkenawy.elmarket.ui.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +17,7 @@ import com.a7medkenawy.elmarket.ui.activities.CartListActivity
 import com.a7medkenawy.elmarket.utils.Constants
 import com.bumptech.glide.Glide
 
-class CartAdapter(val context: CartListActivity, val list: ArrayList<Cart>) :
+class CartAdapter(val context: Activity, val list: ArrayList<Cart>, private val updateCartItem: Boolean) :
     RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
 
@@ -38,6 +39,8 @@ class CartAdapter(val context: CartListActivity, val list: ArrayList<Cart>) :
             tvCartItemPrice.text = "${cartItem.price}$"
             tvCartQuantity.text = cartItem.cart_quantity
 
+
+
             if (cartItem.cart_quantity == "0") {
                 ibAddCartItem.visibility = View.GONE
                 ibRemoveCartItem.visibility = View.GONE
@@ -51,8 +54,15 @@ class CartAdapter(val context: CartListActivity, val list: ArrayList<Cart>) :
                 )
 
             } else {
-                ibAddCartItem.visibility = View.VISIBLE
-                ibRemoveCartItem.visibility = View.VISIBLE
+                if(!updateCartItem){
+                    ibDeleteCartItem.visibility=View.GONE
+                    ibRemoveCartItem.visibility=View.GONE
+                    ibAddCartItem.visibility=View.GONE
+                }else{
+                    ibAddCartItem.visibility = View.VISIBLE
+                    ibRemoveCartItem.visibility = View.VISIBLE
+                }
+
                 tvCartQuantity.text = cartItem.cart_quantity
                 tvCartQuantity.setTextColor(ContextCompat.getColor(context, R.color.black))
             }
@@ -71,17 +81,16 @@ class CartAdapter(val context: CartListActivity, val list: ArrayList<Cart>) :
             var stockQuantity = cartItem.stock_quantity.toInt()
             var cartQuantity = cartItem.cart_quantity.toInt()
             var quantityHashtable = HashMap<String, Any>()
-            val basePrice=cartItem.price
             ibAddCartItem.setOnClickListener {
                 cartQuantity++
                 if (cartQuantity >= stockQuantity) {
                     tvCartQuantity.text = stockQuantity.toString()
                     quantityHashtable[Constants.CART_Quantity] = tvCartQuantity.text.toString()
-                    FireStoreClass().updateCartQuantity(context, cartItem.id, quantityHashtable)
+                    FireStoreClass().updateCartQuantity(context as CartListActivity, cartItem.id, quantityHashtable)
                 } else {
                     tvCartQuantity.text = cartQuantity.toString()
                     quantityHashtable[Constants.CART_Quantity] = tvCartQuantity.text.toString()
-                    FireStoreClass().updateCartQuantity(context, cartItem.id, quantityHashtable)
+                    FireStoreClass().updateCartQuantity(context as CartListActivity, cartItem.id, quantityHashtable)
                 }
             }
 
@@ -90,11 +99,11 @@ class CartAdapter(val context: CartListActivity, val list: ArrayList<Cart>) :
                 if (cartQuantity <= 0) {
                     tvCartQuantity.text = "1"
                     quantityHashtable[Constants.CART_Quantity] = tvCartQuantity.text.toString()
-                    FireStoreClass().updateCartQuantity(context, cartItem.id, quantityHashtable)
+                    FireStoreClass().updateCartQuantity(context as CartListActivity, cartItem.id, quantityHashtable)
                 } else {
                     tvCartQuantity.text = cartQuantity.toString()
                     quantityHashtable[Constants.CART_Quantity] = tvCartQuantity.text.toString()
-                    FireStoreClass().updateCartQuantity(context, cartItem.id, quantityHashtable)
+                    FireStoreClass().updateCartQuantity(context as CartListActivity, cartItem.id, quantityHashtable)
                 }
             }
         }

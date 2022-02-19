@@ -63,7 +63,7 @@ class CartListActivity : BaseActivity() {
             binding.rvCartItemsList.visibility = View.VISIBLE
             binding.tvNoCartItemFound.visibility = View.GONE
 
-            val cartAdapter = CartAdapter(this, mCartListItems)
+            val cartAdapter = CartAdapter(this, mCartListItems,true)
             binding.rvCartItemsList.layoutManager = LinearLayoutManager(this)
             binding.rvCartItemsList.adapter = cartAdapter
 
