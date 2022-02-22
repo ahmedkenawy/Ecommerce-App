@@ -41,6 +41,7 @@ object Constants {
 
     const val EXTRA_SELECTED_ADDRESS: String = "extra_selected_address"
 
+    const val STOCK_QUANTITY="stock_quantity"
 
     fun getImageExtension(activity: Activity, ImageUri: Uri): String {
         return MimeTypeMap.getSingleton()

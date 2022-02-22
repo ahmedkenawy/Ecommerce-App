@@ -11,7 +11,7 @@ import android.widget.Toast
 import com.a7medkenawy.elmarket.R
 
 
-class BaseFragment : Fragment() {
+open class BaseFragment : Fragment() {
 
     private lateinit var mProgressDialog: Dialog
 

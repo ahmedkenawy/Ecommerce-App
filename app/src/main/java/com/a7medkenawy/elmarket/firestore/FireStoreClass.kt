@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.a7medkenawy.elmarket.models.*
 import com.a7medkenawy.elmarket.ui.activities.*
 import com.a7medkenawy.elmarket.ui.fragments.HomeFragment
+import com.a7medkenawy.elmarket.ui.fragments.OrdersFragment
 import com.a7medkenawy.elmarket.ui.fragments.ProductsFragment
 import com.a7medkenawy.elmarket.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -445,6 +447,60 @@ class FireStoreClass {
             }
             .addOnFailureListener { e ->
                 activity.hideProgressDialog()
+            }
+    }
+
+    fun updateAllDetails(activityCheckout: ActivityCheckout, cartList: List<Cart>) {
+        val fireStoreBatch = fireStore.batch()
+        val cartHashMap = HashMap<String, Any>()
+
+        for (cartItem in cartList) {
+            cartHashMap[Constants.STOCK_QUANTITY] =
+                ((cartItem.stock_quantity.toInt()) - (cartItem.cart_quantity.toInt())).toString()
+
+            val documentReference = fireStore.collection(Constants.PRODUCT)
+                .document(cartItem.product_id)
+
+            fireStoreBatch.update(documentReference, cartHashMap)
+        }
+
+        for (cartItem in cartList) {
+
+            val documentReference = fireStore.collection(Constants.CART_ITEMS)
+                .document(cartItem.id)
+
+            fireStoreBatch.delete(documentReference)
+        }
+
+        fireStoreBatch.commit().addOnSuccessListener {
+            activityCheckout.updateAllDetailsSuccessfully()
+        }
+            .addOnFailureListener {
+                activityCheckout.hideProgressDialog()
+            }
+    }
+
+    fun getMyOrdersList(fragment: OrdersFragment) {
+        fireStore.collection(Constants.ORDERS)
+            .whereEqualTo(Constants.USER_ID, getCurrentUser())
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e(fragment.javaClass.simpleName, document.documents.toString())
+                val list: ArrayList<Order> = ArrayList()
+
+                for (i in document.documents) {
+
+                    val orderItem = i.toObject(Order::class.java)!!
+                    orderItem.id = i.id
+
+                    list.add(orderItem)
+                }
+
+                fragment.populateOrdersListInUI(list)
+            }
+            .addOnFailureListener { e ->
+                fragment.hideProgressDialog()
+                Log.e(fragment.javaClass.simpleName, "Error while getting the orders list.", e)
             }
     }
 

@@ -16,7 +16,7 @@ import com.a7medkenawy.elmarket.ui.adapter.CartAdapter
 import com.a7medkenawy.elmarket.utils.Constants
 
 class CartListActivity : BaseActivity() {
-    private lateinit var mProductsList: ArrayList<Product>
+    private var mProductsList= ArrayList<Product>()
     private lateinit var mCartListItems: ArrayList<Cart>
 
     lateinit var binding: ActivityCartListBinding
