@@ -1,12 +1,15 @@
 package com.a7medkenawy.elmarket.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.a7medkenawy.elmarket.databinding.ProductCustomViewBinding
 import com.a7medkenawy.elmarket.models.Order
+import com.a7medkenawy.elmarket.ui.activities.MyOrderDetailssActivity
+import com.a7medkenawy.elmarket.utils.Constants
 import com.bumptech.glide.Glide
 
 open class MyOrdersListAdapter(
@@ -31,12 +34,21 @@ open class MyOrdersListAdapter(
 
         if (holder is MyViewHolder) {
 
-            Glide.with(context).load(model.image).into(holder.binding.productIV)
+            with(holder.binding) {
+                Glide.with(context).load(model.image).into(holder.binding.productIV)
 
-            holder.binding.productTitle.text = model.title
-            holder.binding.productPrice.text = "$${model.total_amount}"
+                productTitle.text = model.title
+                productPrice.text = "$${model.total_amount}"
+                productDelete.visibility = View.GONE
 
-            holder.binding.productDelete.visibility = View.GONE
+                root.setOnClickListener {
+                    val intent=Intent(context,MyOrderDetailssActivity::class.java)
+                    intent.putExtra(Constants.SELECTED_ORDER,model)
+                    context.startActivity(intent)
+                }
+            }
+
+
         }
     }
 

@@ -8,6 +8,8 @@ import android.webkit.MimeTypeMap
 object Constants {
 
 
+
+
     //  Collections in Cloud FireStore
     const val USERS = "users"
     const val PRODUCT = "products"
@@ -42,6 +44,8 @@ object Constants {
     const val EXTRA_SELECTED_ADDRESS: String = "extra_selected_address"
 
     const val STOCK_QUANTITY="stock_quantity"
+
+    const val SELECTED_ORDER="selected_order"
 
     fun getImageExtension(activity: Activity, ImageUri: Uri): String {
         return MimeTypeMap.getSingleton()

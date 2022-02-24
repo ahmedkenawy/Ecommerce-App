@@ -69,7 +69,6 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:contentDescription="@string/content_description"
-        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:padding="@dimen/_3sdp"
         android:src="@drawable/ic_vector_delete"
         app:layout_constraintEnd_toEndOf="parent"

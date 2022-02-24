@@ -143,6 +143,8 @@ class ActivityCheckout : BaseActivity() {
             mSubTotal.toString(),
             "10.0",
             mTotalAmount.toString(),
+            System.currentTimeMillis()
+
         )
 
         FireStoreClass().placeOrder(this, order)
